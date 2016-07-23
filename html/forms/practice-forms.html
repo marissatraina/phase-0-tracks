@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Practice Form</title>
+</head>
+<body>
+  <form name="practice" action="success.html">
+    <fieldset>
+      <div>
+        <label>Operating System</label>
+        <select name="operating-system">
+          <option value="linux">Linux</option>
+          <option value="osx">OSX</option>
+          <option value="windows">Windows</option>
+        </select>
+      </div>
+
+      <div>
+        <label>Why is this your prefered OS?</label><br>
+        <textarea name="why" rows="5" cols="50"></textarea>
+      </div>
+
+      <div>
+        <label>Check the box if you are sure about your answer?</label>
+        <input type="checkbox" name="certain?"></input>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div>
+        <label>Upload a picture of you using your favorite OS</label><br>
+        <input type="file" name="picture"></input>
+      </div>
+
+      <div>
+        <label>What year is your OS?</label>
+        <input type="date" name="age"></input>
+      </div>  
+    </fieldset>
+
+    <button type="submit">Submit</button> 
+  </form>
+</body>
+</html>
