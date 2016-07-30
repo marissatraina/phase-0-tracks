@@ -1,0 +1,13 @@
+img[src="octopus.png"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: -1;
+}
+
+img[src="hat.png"] {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 1;
+}
