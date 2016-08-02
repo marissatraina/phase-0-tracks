@@ -1,3 +1,35 @@
-body {
- 
+.column-1 {
+  display: inline-block;
+  float: left;
+  width: 45%;
+  margin-bottom: 50px;
+  padding: 15px;
 }
+
+.column-2 {
+  display: inline-block;
+  float: right;
+  width: 45%;
+  margin-bottom: 50px;
+  padding: 15px;
+ }
+ 
+header {
+  
+  }
+  
+ footer {
+  display: flex;
+  width: 100%;
+  bottom: 0%;
+ }
+ 
+ body {
+   font-family: helvetica;
+   background-color: black;
+   color: white;
+   }
+   
+ a:link {
+   text-decoration:none;
+ }
