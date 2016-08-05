@@ -1,0 +1,11 @@
+# Robot Guide to Elevator Operating
+
+-To enter the elevator:
+	-Press the up-arrow if the destination floor level > current floor level
+	-Press the down-arrow if the destination floor level < current floor level
+-Until the elevator arrives, wait
+-Enter the elevator when it arrives
+-Each floor is numbered and represented in button form.
+-Press the button of the destination floor number.
+-Until the display reads the destination floor number, stay in the elevator.
+-Once display reads the destination floor number, exit elevator.
