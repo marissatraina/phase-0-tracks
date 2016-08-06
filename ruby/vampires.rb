@@ -29,25 +29,45 @@ birthday = 2016 - birth_year.to_i
   else health = false
   end
 
-vampire = false 
-  if name == "Drake Cula"
-    vampire = true
-  elsif name == "Tu Fang"
-    vampire = true
-  end
 
-  if vampire == true 
-    puts "Results: Definitely a vampire."
+
+vampire = false 
+
+  until vampire == true
+    if name == "Drake Cula"
+      vampire = true
+      puts "Results: Definitely a vampire."
+    elsif name == "Tu Fang"
+      vampire = true
+      puts "Results: Definitely a vampire."
+    elsif year && (bread || health) == true
+      vampire = true
+      puts "Results: Probably not a vampire."
+    elsif (year && bread && health) == false 
+      vampire = true
+      puts "Results: Almost certainly a vampire."
+    elsif year && bread == false
+      vampire = true
+      puts "Results: Probably a vampire."
+    elsif year && health == false
+      vampire = true
+      puts "Results: Probably a vampire."
+    else vampire = true
+        puts "Results inconclusive."
+    end
   end
-  
-while vampire == false
-  if year && (bread || health) == true
-    puts "Results: Probably not a vampire."
-  elsif year == false
-    puts "Results: Almost certainly a vampire."
-  else puts "Results: Probably a vampire."
-  end
-end
+    
+  puts bread
+  puts health
+  puts year
+
+   # if year && (bread || health) == true
+   #   puts "Results: Probably not a vampire."
+   # elsif year == false
+   #   puts "Results: Almost certainly a vampire."
+   # else puts "Results: Probably a vampire."
+   # end
+
 
 
  
