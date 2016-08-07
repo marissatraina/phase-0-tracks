@@ -19,6 +19,20 @@ num = 0
     garlic = gets.chomp
     puts "Would you like to enroll in the company's health insurance? (y/n)"
     insurance = gets.chomp
+    puts "Name any allergies you have. Press enter after each allergy and type done when finished."
+      allergies = []
+      while true
+        allergy = gets.chomp
+        break if allergy == "done"
+        allergies << allergy
+      end
+    puts "Employee #{num} Information:"
+    puts "Name: #{name}"
+    puts "Age: #{age}"
+    puts "Birth year: #{birth_year}"
+    puts "Garlic Bread Order: #{garlic}"
+    puts "Health Insurance: #{insurance}"
+    puts "Allergy Information: " + allergies.join(", ")
     puts "Employee #{num} Results:"
 
     year = false
