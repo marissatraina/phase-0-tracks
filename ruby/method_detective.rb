@@ -11,28 +11,25 @@ p "iNvEsTiGaTiOn".swapcase!
 p "zom".insert(2, "o")
 # => “zoom”
 
-str = "enhance"
-str.insert(0, "    ")
-p str.insert(11, "    ")
-
+p "enhance".center(15)
 # => "    enhance    "
 
-# "Stop! You’re under arrest!".<???>
+p "Stop! You’re under arrest!".upcase!
 # => "STOP! YOU’RE UNDER ARREST!"
 
-# "the usual".<???>
+p "the usual" + " suspects"
 #=> "the usual suspects"
 
-# " suspects".<???>
+p " suspects".prepend("the usual")
 # => "the usual suspects"
 
-# "The case of the disappearing last letter".<???>
+p "The case of the disappearing last letter".chop
 # => "The case of the disappearing last lette"
 
-# "The mystery of the missing first letter".<???>
+p "The mystery of the missing first letter".slice(1, 38)
 # => "he mystery of the missing first letter"
 
-# "Elementary,    my   dear        Watson!".<???>
+p "Elementary,    my   dear        Watson!".squeeze(" ")
 # => "Elementary, my dear Watson!"
 
 # "z".<???>
