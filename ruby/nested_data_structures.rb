@@ -51,3 +51,7 @@ hogwarts = {
     ]
   }
 }
+
+p hogwarts[:gryffindor][:students][0]
+p hogwarts[:hufflepuff][:total_points][:first_semester]
+p hogwarts[:ravenclaw][:pretty_name]
