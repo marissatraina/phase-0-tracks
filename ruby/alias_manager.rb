@@ -1,6 +1,6 @@
 #Alias Manager
 # create vowel string for comparison
-#$vowels = 'aeiou'
+$vowels = 'aeiou'
 # define method vowel_check to search through string for vowels
 # define method vowels_next to replace vowels 
 # define method alias_generator
