@@ -4,7 +4,7 @@ $vowels = 'aeiou'
 
 # define method vowel_check to search through string for vowels
 def vowel_check(character)
-  (char =~ /[aeiou]/) != nil
+  (character =~ /[aeiou]/) != nil
 end
 
 # define method vowel_next to replace vowels
@@ -25,35 +25,40 @@ def alias_generator(name)
   #iterate through database
   database.length.times do |i|
   
-  # employ the vowel_check method & vowel_next method on names
-  if vowel_check(database[i])
-    database[i] = vowel_next(database[i])
-  else database[i] = database[i]
-  end 
-  
-  # split up string into two pieces & swap first and last name
-  alias = database.join('').split(' ').reverse!
-  alias[0].capitalize!
-  alias[1].capitalize!
+    # employ the vowel_check method & vowel_next method on names
+    if vowel_check(database[i])
+      database[i] = vowel_next(database[i])
+    else database[i] = database[i]
+    end 
+  end
 
-  return swap.join(' ')
+  # split up string into two pieces & swap first and last name
+  alias_new = database.join('').split(' ').reverse!
+  alias_new[0].capitalize!
+  alias_new[1].capitalize!
+
+  return alias_new.join(' ')
 end
 
 # Create alias database to store aliases
-alias_database = {}
+agent_database = {}
 
 #Create User Interface
   # asks user to input first and last name at once
-  puts "\n" + "Please enter the agent full name(s) into the alias generator:"
+  puts "\n" + "Please enter the agent's full name into the alias generator:"
   agent_name = gets.chomp
+  
   # loops through until user inputs 'exit'
-  while agent_name != 'exit'
+  until agent_name == 'exit'
     puts "\n" + "Alias: " + alias_generator(agent_name)
   # employs alias_generator and stores result in database
-  agent_database[agent_name] = alias_generator(agent_name)
+    agent_database[agent_name] = alias_generator(agent_name)
 
-  puts "\n" + "Enter another name into the alias generator or enter 'exit' to close the generator:"
-  agent_name = gets.chomp
+    puts "\n" + "Enter another name into the alias generator or enter 'exit' to close the generator:"
+    agent_name = gets.chomp
+
+  end
 
 #print database
-agent_database.each { |name, alias|} puts "\n" + "Agent #{name}, otherwise known as #{alias}."
+agent_database.each { |name, alias_new| puts "\n" + "Agent #{name}, otherwise known as #{alias_new}."}
+
