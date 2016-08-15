@@ -32,9 +32,9 @@ def alias_generator(name)
   end 
   
   # split up string into two pieces & swap first and last name
-  swap = database.join('').split(' ').reverse!
-  swap[0].capitalize!
-  swap[1].capitalize!
+  alias = database.join('').split(' ').reverse!
+  alias[0].capitalize!
+  alias[1].capitalize!
 
   return swap.join(' ')
 end
@@ -54,4 +54,6 @@ alias_database = {}
 
   puts "\n" + "Enter another name into the alias generator or enter 'exit' to close the generator:"
   agent_name = gets.chomp
+
 #print database
+agent_database.each { |name, alias|} puts "\n" + "Agent #{name}, otherwise known as #{alias}."
