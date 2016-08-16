@@ -73,3 +73,36 @@ puts pretty_list(new_list)
 
 # Reflect
 
+# What did you learn about pseudocode from working on this challenge?
+  # I well organized pseudocode (in both thought and structure) is 
+  # irreplacable.
+
+# What are the tradeoffs of using arrays and hashes for this challenge?
+#
+  # Hashes allow for key value pairs and reassigning quantities 
+  # associated with items. 
+#
+# What does a method return?
+
+  # A method returns the last line of code within the method implicitly
+  # and anything succeeding return command. 
+#
+# What kind of things can you pass into methods as arguments?
+
+  # You can pass variables, non-specific keys, values, symbols. Any 
+  # that in it of itself is yet to assigned a 'value.' Specific  
+  # placeholders for future values.
+
+# How can you pass information between methods?
+  # Through objects/variables with values independent of the methods. In
+  # the code above, new_list is a good example of that.
+
+# What concepts were solidified in this challenge, and what concepts are 
+# still confusing?
+
+# This challenge solidified the concept of key-value pairs and default
+# quantities associated. Methods, especially the concept of return 
+# in methods was solidified. For me, I am on my way to fully 
+# understanding blocks but am still slightly confused when it comes to
+# their relationship and interaction with and within methods.
+
