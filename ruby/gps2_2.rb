@@ -15,8 +15,8 @@ def create_list(string_of_items)
   return grocery_list
 end 
 
-new_list = create_list("carrots apples cereal pizza")
-p new_list
+new_list = create_list("Lemonade Tomatoes Onions Ice-Cream")
+
 
 # Method to add an item to a list
 # input: hash list, item name, and optional quantity
@@ -28,7 +28,9 @@ def add_item(grocery_list, item, quantity=1)
   return grocery_list
 end 
 
-p add_item(new_list, "chocolate", 3)
+add_item(new_list, "Lemonade", 2)
+add_item(new_list, "Tomatoes", 3)
+add_item(new_list, "Ice-Cream", 4)
 
 # Method to remove an item from the list
 # input: hash list and item to be removed
@@ -40,7 +42,7 @@ def remove_item(grocery_list, item)
   return grocery_list
 end 
 
-p remove_item(new_list, "carrots")
+remove_item(new_list, "Lemonade")
 
 # Method to update the quantity of an item
 # input: hash list, item, new quanitity
@@ -52,7 +54,7 @@ def update_quantity(grocery_list, item, new_quantity)
   return grocery_list
 end 
 
-p update_quantity(new_list, "pizza", 4)
+update_quantity(new_list, "Ice-Cream", 1)
 
 # Method to print a list and make it look pretty
 # input: hash list
@@ -63,5 +65,11 @@ def pretty_list(grocery_list)
   puts "Shopping List"
   grocery_list.each do |item, quantity|
     puts "#{item}: #{quantity}"
-  end 
+  end
+  puts "Happy Shopping!"
 end 
+
+puts pretty_list(new_list)
+
+# Reflect
+
