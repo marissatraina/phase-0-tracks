@@ -8,9 +8,7 @@ class Santa
     puts "Initializing Santa instance..."
     @gender = "N/A"
     @ethnicity = "N/A"
-  end 
-# attributes not passed in on initialization
-  @reindeer_ranking = [
+    @reindeer_ranking = [
     "Rudolph", 
     "Dasher", 
     "Dancer", 
@@ -21,7 +19,8 @@ class Santa
     "Donner", 
     "Blitzen"
   ]
-  @age = 0
+    @age = 0
+  end 
 
 # Define Speak Method
 # => prints ho ho message
@@ -34,6 +33,36 @@ class Santa
 
   def eat_milk_and_cookies(flavor)
     puts "That was a good #{flavor}!"
+  end
+
+  def santa_age(years)
+    @age = years
+  end
+
+  def celebrate_birthday
+    @age += 1
+    puts "Happy Birthday Santa! Can't believe you are #{age} years old!"
+  end
+
+  def get_mad_at(reindeer)
+    @reindeer_ranking.delete_at(@reindeer_ranking.index(reindeer))
+    @reindeer_ranking << reindeer
+  end
+
+  def reindeer_ranking
+    @reindeer_ranking
+  end
+
+  def gender=(new_gender)
+    @gender = new_gender
+  end
+
+  def age
+    @age
+  end
+
+  def ethnicity
+    @ethnicity
   end
 
 end
@@ -77,3 +106,9 @@ puts "What a diverse & beautiful group of santas!"
 nick = Santa.new
 nick.speak
 nick.eat_milk_and_cookies("ginger snap")
+nick.get_mad_at("Vixen")
+puts nick.reindeer_ranking
+nick.santa_age(10)
+nick.celebrate_birthday
+
+
