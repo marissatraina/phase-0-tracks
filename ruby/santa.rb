@@ -3,6 +3,26 @@
 # Define Santa Class
 class Santa
 
+  # Initialize method
+  def initialize 
+    puts "Initializing Santa instance..."
+    @gender = gender
+    @ethnicity = ethnicity
+  end 
+# attributes not passed in on initialization
+  @reindeer_ranking = [
+    "Rudolph", 
+    "Dasher", 
+    "Dancer", 
+    "Prancer", 
+    "Vixen", 
+    "Comet", 
+    "Cupid", 
+    "Donner", 
+    "Blitzen"
+  ]
+  @age = 0
+  
 # Define Speak Method
 # => prints ho ho message
   def speak
@@ -16,10 +36,6 @@ class Santa
     puts "That was a good #{flavor}!"
   end
 
-# Initialize method
-  def initialize 
-    puts "Initializing Santa instance..."
-  end 
 end
 
 # Test Code 
