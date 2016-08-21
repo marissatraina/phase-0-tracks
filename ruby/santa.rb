@@ -2,12 +2,14 @@
 
 # Define Santa Class
 class Santa
+  attr_reader :reindeer_ranking, :ethnicity
+  attr_accessor :age, :gender
 
   # Initialize method
-  def initialize 
+  def initialize(gender, ethnicity)
     puts "Initializing Santa instance..."
-    @gender = "N/A"
-    @ethnicity = "N/A"
+    @gender = gender
+    @ethnicity = ethnicity
     @reindeer_ranking = [
     "Rudolph", 
     "Dasher", 
@@ -35,39 +37,21 @@ class Santa
     puts "That was a good #{flavor}!"
   end
 
-  def santa_age(years)
-    @age = years
-  end
-
   def celebrate_birthday
     @age += 1
     puts "Happy Birthday Santa! Can't believe you are #{age} years old!"
   end
 
   def get_mad_at(reindeer)
+    puts "Unfortunately, #{reindeer} was naughty and ate all the carrots."
+    puts "Santa's list of favorites has changed:"
     @reindeer_ranking.delete_at(@reindeer_ranking.index(reindeer))
     @reindeer_ranking << reindeer
   end
 
-  def reindeer_ranking
-    @reindeer_ranking
-  end
-
-  def gender=(new_gender)
-    @gender = new_gender
-  end
-
-  def age
-    @age
-  end
-
-  def ethnicity
-    @ethnicity
-  end
-
 end
 
-# Test Code 
+
   # example genders for looping
   example_genders = [
     "agender", 
@@ -90,25 +74,43 @@ end
     "N/A"
   ]
 
-  puts "While talking to some Santas at SantaCon..."
-  example_genders.each do |gender|
-    puts "One santa identified as #{gender}."
-  end
+  # Release 1 Code 
+#   puts "While talking to some Santas at SantaCon..."
+#   example_genders.each do |gender|
+#     puts "One santa identified as #{gender}."
+#   end
 
-  puts "Also, we met..."
-  example_ethnicities.each do |ethnicity|
-    puts "a #{ethnicity} santa!"
-  end
-  puts "& more!"
+#   puts "Also, we met..."
+#   example_ethnicities.each do |ethnicity|
+#     puts "a #{ethnicity} santa!"
+#   end
+#   puts "& more!"
 
-puts "What a diverse & beautiful group of santas!"
+# puts "What a diverse & beautiful group of santas!"
 
-nick = Santa.new
-nick.speak
-nick.eat_milk_and_cookies("ginger snap")
-nick.get_mad_at("Vixen")
-puts nick.reindeer_ranking
-nick.santa_age(10)
-nick.celebrate_birthday
+# Release 4: Santa Generator
+puts "Today, many Santas from all walks of life contribute to gifting the world!"
+old_nicks = 0
+
+10.times do
+  saint_nick = old_nicks.to_s
+  saint_nick = Santa.new(example_genders.sample, example_ethnicities.sample)
+
+  puts "One Santa's age: #{saint_nick.age = rand(0...140)}"
+  puts "One Santa's gender: #{saint_nick.gender}"
+  puts "One Santa's ethnicity: #{saint_nick.ethnicity}"
+
+  old_nicks += 1
+
+end
+
+# Test Code
+# nick = Santa.new
+# nick.speak
+# nick.eat_milk_and_cookies("ginger snap")
+# nick.get_mad_at("Vixen")
+# puts nick.reindeer_ranking
+# nick.age = 12
+# nick.celebrate_birthday
 
 
