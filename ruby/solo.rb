@@ -2,7 +2,7 @@
 
 class Band
   attr_reader   :genre_options, :hometown_options
-  attr_accessor :name, :members, :musicians, :band
+  attr_accessor :name, :musicians, :band
   #--Attributes--
   # genre
   # name
@@ -12,9 +12,8 @@ class Band
 
   def initialize(name)
     @name = name
-    @members = 1
     @band = [ ]
-    puts "Let's start a band called #{name}..."
+    puts "Great, I love the name #{name}!"
 
   # genre_options array
     @genre_options = [ 'blues',
@@ -90,11 +89,11 @@ class Band
     # depends on number of members 
 
   def member_names(members)
-    @members.times do 
+    members.times do 
       @band << @musicians.sample
     end
 
-    puts "Our band members will include:"
+    puts "Cool, that means the lineup will include:"
     @band.each do |musician|
       puts "#{musician}"
     end
@@ -105,14 +104,13 @@ class Band
   # select randomly from genre_options
   def genre_generator
     genre = @genre_options.sample
-    puts "#{name}'s music will be of the #{genre} variety."
+    puts "Awesome, I think #{name}'s music should be of the #{genre} variety."
   end
 
 # hometown_generator
   #randomly select from hometown_options
   def hometown_generator
     city = @hometown_options.sample
-    puts "We are from #{city}, but we dream of touring the world!"
   end
 
 end
@@ -123,3 +121,44 @@ end
 # toulouse.member_names(@members)
 # toulouse.genre_generator
 # toulouse.hometown_generator
+
+# User Interface 
+puts "Enter 'hi' to get started:"
+close = gets.chomp
+
+until close == "exit"
+
+puts "Hey, I heard you want to start a band? (y/n)"
+  future = gets.chomp
+    if future == "y"
+      puts "Yay! We're starting a band! What shall we call it?"
+      name = gets.chomp
+      new_band = Band.new(name)
+
+      puts "How many musicians do we need? Lets decide on something under 7."
+      members = gets.chomp.to_i
+      new_band.member_names(members)
+
+      puts "Is it okay if I decide on the genre of music? (y/n)"
+        ans = gets.chomp
+
+        if ans == "y"
+          new_band.genre_generator
+        elsif ans == "n"
+          puts "Oh! What is your preference then?"
+          genre = gets.chomp
+          puts "Sure, I guess I'm open to #{genre}..."
+        else puts "Sorry I didn't understand you, maybe we'll discuss another time."
+        end
+
+      city = new_band.hometown_generator
+      puts "We have a lot of planning to do. I know we're only from #{city}, but soon enough #{name} can be touring the world!"
+    elsif future == "n"
+      puts "Aw man! Sorry to hear, let me know in the future if you ever do."
+    else puts "Sorry, I didn't understand you...maybe a band isn't a good idea."
+
+    end
+
+    puts "Any chance you want to brainstorm another band with me? If not just enter 'exit'."
+    close = gets.chomp
+end
