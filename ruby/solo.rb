@@ -1,8 +1,8 @@
 #---Band Class---
 
 class Band
-  attr_accessor :name, :band_members, :instrument_options, :genre_options,
-                :hometown_options, :musicians, :members
+  attr_reader   :genre_options, :hometown_options
+  attr_accessor :name, :members, :musicians, :band
   #--Attributes--
   # genre
   # name
@@ -13,17 +13,8 @@ class Band
   def initialize(name)
     @name = name
     @members = 1
+    @band = [ ]
     puts "Let's start a band called #{name}..."
-  
-  # instrument_options array
-    @instrument_options = [ 'vocals', 
-      'guitar',
-      'drums',
-      'bass',
-      'brass',
-      'strings',
-      'keys'
-    ]
 
   # genre_options array
     @genre_options = [ 'blues',
@@ -68,18 +59,29 @@ class Band
       'Lambert Lachapelle',
       'Adrianna Huff',
       'Cherie Perreault',
-      'Parris Lowry'
+      'Parris Lowry',
+      'Inga McCleary',
+      'Alyse Michaels',
+      'Della Mac Alastair',
+      'Cait Oliverson',
+      'Terra Hawk',
+      'Oswin Valentini',
+      "Isabelle Akerman",
+      "Braden Paul",
+      'Anona Dwight',
+      'Brighid Blake',
+      'Gauthier McGuinness'
     ]
   end
 
 #--Methods--
 
-# band_members (between 2 and 9)
+# band_members (between 2 and 5)
   # randomly chooses a number between 2 and 9
   # input into band member hash
 
   def band_members
-    @members = rand(2...9)
+    @members = rand(2...6)
     puts "#{name} will be a #{members}-piece band"
   end
 
@@ -88,22 +90,16 @@ class Band
     # depends on number of members 
 
   def member_names(members)
-    band = []
     @members.times do 
-      band << @musicians.sample
+      @band << @musicians.sample
     end
 
-    puts "The band members will include:"
-    band.each do |musician|
+    puts "Our band members will include:"
+    @band.each do |musician|
       puts "#{musician}"
     end
 
   end
-
-
-# assign_instruments(argument -> number of members)
-  #randomly choose number of instruments depending on number of members
-  # input hash with members and instruments
 
 # genre_generator
   # select randomly from genre_options
@@ -112,15 +108,18 @@ class Band
     puts "#{name}'s music will be of the #{genre} variety."
   end
 
-# kick_out_member(member_name)
-  #delete name string from band_members hash
-
 # hometown_generator
   #randomly select from hometown_options
+  def hometown_generator
+    city = @hometown_options.sample
+    puts "We are from #{city}, but we dream of touring the world!"
+  end
+
 end
 
-# Driver Code
-toulouse = Band.new("Toulouse")
-toulouse.band_members
-toulouse.member_names(@members)
-toulouse.genre_generator
+# # Driver Code
+# toulouse = Band.new("Toulouse")
+# toulouse.band_members
+# toulouse.member_names(@members)
+# toulouse.genre_generator
+# toulouse.hometown_generator
