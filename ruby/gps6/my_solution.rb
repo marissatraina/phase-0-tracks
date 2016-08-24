@@ -1,11 +1,13 @@
 # Virus Predictor
 
-# I worked on this challenge [by myself, with: ].
-# We spent [#] hours on this challenge.
+# I worked on this challenge with: Matt Galloway.
+# We spent 1.5 hours on this challenge.
 
 # EXPLANATION OF require_relative
-#
-#
+# Require can load a built-in library or absolute path of
+# of a file, require_relative can be used to load files
+# in the same relative directory as the current file.
+
 require_relative 'state_data'
 
 class VirusPredictor
@@ -39,18 +41,20 @@ class VirusPredictor
   # population, rounds down to nearest integer. Prints state and 
   # number of deaths
   def predicted_deaths(population_density, population)
-    # predicted deaths is solely based on population density
-    if @population_density >= 200
-      number_of_deaths = (@population * 0.4).floor
-    elsif @population_density >= 150
-      number_of_deaths = (@population * 0.3).floor
-    elsif @population_density >= 100
-      number_of_deaths = (@population * 0.2).floor
-    elsif @population_density >= 50
-      number_of_deaths = (@population * 0.1).floor
-    else
-      number_of_deaths = (@population * 0.05).floor
+  # predicted deaths is solely based on population density
+    case @population_density
+      when 200..Float::INFINITY
+        rate = 0.4
+      when 150..199
+        rate = 0.3
+      when 100..149
+        rate = 0.2
+      when 50..99
+        rate = 0.1
+      else rate = 0.05
     end
+
+    number_of_deaths = (@population * rate).floor
 
     number_of_deaths
 
@@ -63,16 +67,16 @@ class VirusPredictor
     # by additional factors we haven't added into this functionality.
     speed = 0.0
 
-    if @population_density >= 200
-      speed += 0.5
-    elsif @population_density >= 150
-      speed += 1
-    elsif @population_density >= 100
-      speed += 1.5
-    elsif @population_density >= 50
-      speed += 2
-    else
-      speed += 2.5
+    case @population_density
+      when 200..Float::INFINITY
+        speed += 0.5
+      when 150..199
+        speed += 1
+      when 100..149
+        speed += 1.5
+      when 50..99
+        speed += 2
+      else speed += 2.5
     end
 
     speed
@@ -102,3 +106,34 @@ end
 VirusPredictor.state_report(STATE_DATA)
 #=======================================================================
 # Reflection Section
+
+#--What are the differences between the two different hash 
+#--syntaxes shown in the state_data file?
+
+# The exterior hash uses arrows to assign the interior hash as the 
+# string's value while the interior hash uses colons to assign 
+# the floats to each variable.
+
+#--What does require_relative do? How is it different from require?
+
+# As mentioned previously, require relative can load files in the 
+# same directory as the working file whereas require can load
+# any file with an absolute path or within the built-in library
+
+#--What are some ways to iterate through a hash?
+
+# There a plenty of ways to iterate through a hash. You can use a block,
+# built-in methods, or in this case a written instance method for a specific
+# iterative method.
+
+#--When refactoring virus_effects, what stood out to you about
+#--the variables, if anything?
+
+# It seemed superfluous to take in more than two arguments when
+# two other methods were combined to create virus effects.
+
+#--What concept did you most solidify in this challenge?
+
+# The overall concept of creating a class along with useful instance
+# methods was solidified for me. Also working with hashes was further 
+# solidified.
