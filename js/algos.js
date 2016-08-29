@@ -1,31 +1,94 @@
-// Release 0: Find the Longest Phrase
+//----Release 0: Find the Longest Phrase----
 
-  // Define longest phrase method that takes array as argument
-    // Loop through arraying depending on length of array
+  // Define longest phrase function that takes array as argument
+      // Loop through array depending on length of array
     // Iterate through array of words to determine length of each word
-    // Stop iteration when there is one word left in array or more
-      //than one phrase is the same length
-    // Compare length of word to length of preceding word
-    // Delete phrase, if phrase is shorter
+
+  
+  var longest = function(phraseArray) {
+
+    var maxLength = 0;
+    var longestPhrase = '';
+
+    for (var i = 0; i < phraseArray.length; i++) {
+
+      // IF condition that resets max length and longest phrase every loop
+      // depending on phrase length
+      if (phraseArray[i].length > maxLength) {
+        maxLength = phraseArray[i].length;
+        longestPhrase = phraseArray[i];
+
+      // ELSE IF condition add multiple longest phrase words
+      } else if (phraseArray[i].length === maxLength) {
+        longestPhrase += (' & ' + phraseArray[i]);
+
+      }
+    
+    }
     // return/print last remaining phrase(s) in array
+    return longestPhrase;
+  };
 
   // Driver Code --> tests on a few different arrays
+  var arrayOne = ['hey', 'wassup', 'hello'];
+  test = longest(arrayOne);
+  console.log("Longest phrase result of the first batch:")
+  console.log(test);
+
+  console.log("----------------------------------------------")
+
+  var arrayTwo = ['catch','a', 'tiger', 'by', 'the', 'toe'];
+  testTwo = longest(arrayTwo);
+  console.log("Longest phrase result of the second batch:")
+  console.log(testTwo); 
+
+  console.log("----------------------------------------------")
 
 
-// Release 1: Find a Key-Value Match
+//----Release 1: Find a Key-Value Match----
 
-  // Define in_common method that takes two objects for arguments
-    // determine length of objects
-    // loop through by index
-    // set keys equal to one another to see if the value of each key is equal 
+  // Define inCommon function that takes two objects for arguments
+    // create two arrays that contain the keys of the two objects 
+    // loop through by length of key arrays  
+    // set keys equal to one another to see if the value of each key is equal
+      // look up how to access nested in javascript 
     // if at least one index matches return true
 
-  // Driver Code --> tess for both true and false outcomes
+var inCommon = function(object1, object2) {
+
+  for (var char1 in object1) {
+    for (var char2 in object2) {
+      if (char1 == char2) { 
+        if (object1[char1].toString() == object2[char1].toString()) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+};
+var object1 = {name: "Marissa", age: 22};
+var object2 = {name: "Daniela", age: 22};
+var object3 = {name: "Betty", age: 98, birthYear: 1918};
+
+if (inCommon(object1, object2)) {
+  console.log("The 2 objects have something in common!")
+} else {
+  console.log("The 2 objects are nothing alike!")
+};
+
+console.log("----------------------------------------------")
+
+if (inCommon(object1, object3)) {
+  console.log("The 2 objects have something in common!")
+} else {
+  console.log("The 2 objects are nothing alike!")
+};
 
 
 // Release 2: Generate Random Test Data
 
-  // Random Test Data Generator Method that takes number of strings
+  // Random Test Data Generator function that takes number of strings
   // in array as argument
   // create empty array
   // create alphabet array
