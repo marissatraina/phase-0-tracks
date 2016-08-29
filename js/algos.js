@@ -32,17 +32,17 @@
   // Driver Code --> tests on a few different arrays
   var arrayOne = ['hey', 'wassup', 'hello'];
   test = longest(arrayOne);
-  console.log("Longest phrase result of the first batch:")
+  console.log("longest TEST 1:");
   console.log(test);
 
-  console.log("----------------------------------------------")
+  console.log("----------------------------------------------");
 
   var arrayTwo = ['catch','a', 'tiger', 'by', 'the', 'toe'];
   testTwo = longest(arrayTwo);
-  console.log("Longest phrase result of the second batch:")
+  console.log("longest TEST 2:");
   console.log(testTwo); 
 
-  console.log("----------------------------------------------")
+  console.log("----------------------------------------------");
 
 
 //----Release 1: Find a Key-Value Match----
@@ -71,18 +71,22 @@ var object1 = {name: "Marissa", age: 22};
 var object2 = {name: "Daniela", age: 22};
 var object3 = {name: "Betty", age: 98, birthYear: 1918};
 
+console.log("inCommon TEST 1:");
+
 if (inCommon(object1, object2)) {
-  console.log("The 2 objects have something in common!")
+  console.log("The 2 objects have something in common!");
 } else {
-  console.log("The 2 objects are nothing alike!")
+  console.log("The 2 objects are nothing alike!");
 };
 
-console.log("----------------------------------------------")
+console.log("----------------------------------------------");
+
+console.log("inCommon TEST 2:");
 
 if (inCommon(object1, object3)) {
-  console.log("The 2 objects have something in common!")
+  console.log("The 2 objects have something in common!");
 } else {
-  console.log("The 2 objects are nothing alike!")
+  console.log("The 2 objects are nothing alike!");
 };
 
 
@@ -92,14 +96,62 @@ if (inCommon(object1, object3)) {
   // in array as argument
   // create empty array
   // create alphabet array
-  // create number array 1 to 10
   // for each string - 
-  // choose between 1 and 10 letters per string randomly by sampling
-    // from number array
-  // iteratively sample random number of letters from alphabet string --> store
-    // join letters together to create string --> store in array
-  // repeat until array is filled according to argument number
+  // randomly select number between 1 & 10 for # of letters in word
+  // loop through selecting random letters to create word depending on random 
+  // # of letters --> use random number to index alphabet array
+  // combine randomly selected letters to create word
+    // store words in words array
+  // repeat until array is filled according to array length argument
+
+  var randomTest = function(length) {
+    var wordArray = [];
+    var alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
+                    'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
+                    's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+    
+
+    // loop to create word
+    for (var i = 0; i < length; i++) {
+      var word = []; // stores random letters to be joined later
+      var random = Math.floor((Math.random() * 10) + 1);
+
+        // inner loop to randomly select letters 
+        for (var j = 0; j < random; j++) {
+          var random2 = Math.floor((Math.random() * 26) + 1);
+          var letter = alphabet[random2];
+          word.push(letter);
+        }
+      word = word.join('');
+      wordArray.push(word);
+    }
+
+    return wordArray;
+  };
+
+  // Function to randomly select length for randomTest argument
 
   // Driver Code --> 10 times iteration that builds array and performs
   // longest word method on array
+
+console.log("----------------------------------------------");
+console.log("randomTest TEST:");
+
+var length = 3;
+var test4 = randomTest(length);
+console.log(test4);
+
+console.log("----------------------------------------------");
+console.log("Final Iterative Test:")
+var length = 4;
+
+for (var i = 0; i < 10; i++) {
+  var wordsArray = randomTest(length);
+  var longestPhrase = longest(wordsArray);
+
+  console.log("Group of " + length + " random words: " + wordsArray.join(', '));
+  console.log("Longest word(s) of this group: \n" + longestPhrase);
+  console.log("- - - -");
+}
+
 
