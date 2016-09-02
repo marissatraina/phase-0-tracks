@@ -1,6 +1,6 @@
 #---RELEASE 0: Search Array Method---
 
-# DEFINE method search_array
+# DEFINE method search_array (num_array, num)
   # create empty index array
   # iterate through array (n = 0)
     # WHILE n < num_array.length
@@ -31,6 +31,20 @@ search_array(numbers, 8)
 numbers << 8
 puts "-------------------"
 search_array(numbers, 8)
+
+
+#---RELEASE 1: Calculate Fibonacci Numbers--
+
+
+
+# Define method fib
+  # create [0] fib array(length)
+  # length = length - 1 to match index
+  # iterate through fib array starting with n = 1
+    # WHILE n < length
+      # sum = n + fibarray_[n - 1]
+      # store sum in fib_array
+    # print fib_array
 
 
 
