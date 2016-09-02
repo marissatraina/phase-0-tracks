@@ -31,8 +31,8 @@ search_array(numbers, 8)
 numbers << 8
 puts "-------------------"
 search_array(numbers, 8)
-puts "-------------------"
 
+puts "-------------------"
 
 #---RELEASE 1: Calculate Fibonacci Numbers--
 
@@ -72,6 +72,7 @@ if test[99] == 218922995834555169026
 else puts "ERROR, keep trying!"
 end
 
+puts "-------------------"
 
 #---RELEASE 2: Sort an Array---
 # Understanding insertion sort algorithm
@@ -90,23 +91,49 @@ end
   # create final sorted array with pivot stored
   # delete pivot from original array
   # iterate through original array by index
-    # while final index < length
-      # If current index <= final element 
+    # WHILE final index < length
+      # IF current index <= final element 
         # insert final element before current
-      # elsif final index == final.length - 1
+      # ELSIF final index == final.length - 1
         # insert final index + 1 before current index
 
   # return final sorted array
 
-  # Input: [4, 7, 6, 1, 7, 9, 8, 1]
+  # Input: [4, 7, 6, 1, 7, 9, 8, 2]
   # Expected Output: [1, 2, 4, 6, 7, 7, 8, 9]
 
   def insert_sort(num_array)
-    final = [num_array[0]]
+    # store pivot into new final sorted array
+    sorted = [num_array[0]]
     num_array.delete_at(0)
 
     for i in num_array
       index = 0
+
+      while index < sorted.length
+
+        if i <= sorted[index]
+          sorted.insert(index, i)
+          break
+
+        elsif index == sorted.length-1
+          sorted.insert(index+1, i)
+          break
+        end
+
+      index += 1
+      end
+
+    end
+
+    # return
+    sorted
+  end
+
+  #---Driver Code---
+  arr = [4, 7, 6, 1, 7, 9, 8, 2]
+  p insert_sort(arr)
+
 
 
 
