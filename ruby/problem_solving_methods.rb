@@ -31,21 +31,45 @@ search_array(numbers, 8)
 numbers << 8
 puts "-------------------"
 search_array(numbers, 8)
+puts "-------------------"
 
 
 #---RELEASE 1: Calculate Fibonacci Numbers--
 
 
 
-# Define method fib
-  # create [0] fib array(length)
+# Define method fib(length)
+  # create [0, 1] fib_array
   # length = length - 1 to match index
   # iterate through fib array starting with n = 1
     # WHILE n < length
-      # sum = n + fibarray_[n - 1]
+      # sum = n + fibarray[n - 1]
       # store sum in fib_array
     # print fib_array
 
+def fib(length)
+  fib_array = [0, 1]
+  sum = 0
+  index = 2
 
+  while index < length
+    sum = fib_array[index - 2] + fib_array[index - 1]
+    fib_array << sum
+    index += 1
+  end 
+
+  return fib_array
+end 
+
+#---Driver Code---
+
+p fib(6)
+
+test = fib(100)
+
+if test[99] == 218922995834555169026
+  puts "Test verified for fib(100)!!"
+else puts "ERROR, keep trying!"
+end
 
 
