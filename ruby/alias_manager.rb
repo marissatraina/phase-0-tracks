@@ -1,21 +1,39 @@
 #Alias Manager
 # create vowel string for comparison
-$vowels = 'aeiou'
+$VOWELS = 'aeiou'
+$CONSTANTS = 'bcdfghjklmnpqrstvwxyz'
 
 # define method vowel_check to search through string for vowels
 def vowel_check(character)
-  (character =~ /[aeiou]/) != nil
+  (character =~ /['aeiou']/) != nil
+end
+
+# define method const_check to search thorugh string for
+# constants
+def const_check(character)
+  (character =~ /['bcdfghjklmnpqrstvwxyz']/) != nil
 end
 
 # define method vowel_next to replace vowels
-def vowel_next (character)
+def vowel_next(character)
   if character == 'u'
     character = 'a'
   else 
-    character = $vowels[$vowels.index(character) + 1]
+    character = $VOWELS[$VOWELS.index(character) + 1]
   end
   return character
 end
+
+def const_next(character)
+  if character == 'b'
+    character = 'z'
+  else 
+    character = $CONSTANTS[$CONSTANTS.index(character) + 1]
+  end 
+    return character
+  end
+
+
 
 # define method alias_generator
 def alias_generator(name)
@@ -28,6 +46,8 @@ def alias_generator(name)
     # employ the vowel_check method & vowel_next method on names
     if vowel_check(database[i])
       database[i] = vowel_next(database[i])
+    elsif const_check(database[i])
+      database[i] = const_next(database[i])
     else database[i] = database[i]
     end 
   end
@@ -46,7 +66,7 @@ agent_database = {}
 #Create User Interface
   # asks user to input first and last name at once
   puts "\n" + "Please enter the agent's full name into the alias generator:"
-  agent_name = gets.chomp
+  agent_name = gets.chomp.downcase
   
   # loops through until user inputs 'exit'
   until agent_name == 'exit'
@@ -55,10 +75,11 @@ agent_database = {}
     agent_database[agent_name] = alias_generator(agent_name)
 
     puts "\n" + "Enter another name into the alias generator or enter 'exit' to close the generator:"
-    agent_name = gets.chomp
+    agent_name = gets.chomp.downcase
 
   end
 
 #print database
 agent_database.each { |name, alias_new| puts "\n" + "Agent #{name}, otherwise known as #{alias_new}."}
+
 
