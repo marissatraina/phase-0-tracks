@@ -73,3 +73,40 @@ else puts "ERROR, keep trying!"
 end
 
 
+#---RELEASE 2: Sort an Array---
+# Understanding insertion sort algorithm
+# This algorithm works by sorting a small dataset based on certain conditions
+# example: least to greatest numbers in a number set
+# A step by step visualization & verbal explanation aided
+# most in my understanding of this algorithm. To find the right materials
+# for myself I can keep of running tab of resources that have worked in
+# the past in helping me understand
+# While tackling the algorithm I mostly feel a combination of curiosity
+# and excitement but battle frustration occasionallyo when a resource
+# doesn't include examples
+
+#---Pseudocode--
+# insert_sort(num_arry)
+  # create final sorted array with pivot stored
+  # delete pivot from original array
+  # iterate through original array by index
+    # while final index < length
+      # If current index <= final element 
+        # insert final element before current
+      # elsif final index == final.length - 1
+        # insert final index + 1 before current index
+
+  # return final sorted array
+
+  # Input: [4, 7, 6, 1, 7, 9, 8, 1]
+  # Expected Output: [1, 2, 4, 6, 7, 7, 8, 9]
+
+  def insert_sort(num_array)
+    final = [num_array[0]]
+    num_array.delete_at(0)
+
+    for i in num_array
+      index = 0
+
+
+
