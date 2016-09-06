@@ -90,17 +90,13 @@ end
 
 # Release 4: Santa Generator
 puts "Today, many Santas from all walks of life contribute to gifting the world!"
-old_nicks = 0
 
-10.times do
-  saint_nick = old_nicks.to_s
+27.times do
   saint_nick = Santa.new(example_genders.sample, example_ethnicities.sample)
 
   puts "One Santa's age: #{saint_nick.age = rand(0...140)}"
   puts "One Santa's gender: #{saint_nick.gender}"
   puts "One Santa's ethnicity: #{saint_nick.ethnicity}"
-
-  old_nicks += 1
 
 end
 
