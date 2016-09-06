@@ -19,7 +19,7 @@ define hangman class
 		allows for 7 guesses if the word length is <= 5 letters
 			stores 7 guess symbols in guess hash
 		allows for 9 guesses if the word length is <= 7 letters
-			stores 9 guess symbols in guess hash
+			stores 9 guess symbols in guess hashes
 		allows for 12 guesses if the word length is <= 11 letters
 			stores 12 guess symbols in guess hash
 		
