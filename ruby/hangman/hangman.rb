@@ -85,11 +85,16 @@ class Hangman
     arr.each do |guess, letter|
       @guesses[guess] = letter
     end
+    @guesses
     
   end
 
-  # def guess(letter)
-    
+  def guess(letter)
+    @guesses.each do |guess, letter|
+      @guesses[guess] = letter
+    end
+  end
+
 
 end
 
@@ -97,6 +102,8 @@ end
 test = Hangman.new
 test.word_choice("bluets")
 test.num_of_guesses
+test.guess("a")
+p @guesses
 
 
 
