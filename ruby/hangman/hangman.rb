@@ -43,7 +43,7 @@
 class Hangman
 
   attr_accessor :word
-  attr_reader :blanks, :word
+  attr_reader :blanks, :word, :guesses
 
   def initialize 
     @word = ""
@@ -67,11 +67,36 @@ class Hangman
     end
   end
 
+  def num_of_guesses
+    len = @word.length
+
+    case 
+    when len <= 5 
+      arr = [:one, :two, :three, :four, :five, :six, :seven]
+      p "Player 2, you are allowed 7 letter-guesses."
+    when len <= 7 
+      arr = [:one, :two, :three, :four, :five, :six, :seven, :eigth, :nine]
+      p "Player 2, you are allowed 9 letter-guesses."
+    when len <= 11
+      arr = [:one, :two, :three, :four, :five, :six, :seven, :eigth, :nine, :ten, :eleven, :twelve]
+      p "Player 2, you are allowed 12 letter-guesses."
+    end
+
+    arr.each do |guess, letter|
+      @guesses[guess] = letter
+    end
+    
+  end
+
+  # def guess(letter)
+    
+
 end
 
 #---Driver Code---
-# test = Hangman.new
-# test.word_choice("bluets")
+test = Hangman.new
+test.word_choice("bluets")
+test.num_of_guesses
 
 
 
