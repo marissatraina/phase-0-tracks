@@ -1,33 +1,34 @@
 class TodoList
 
-  attr_accessor :chorelist, :chore1, :chore2
+  # attr_accessor :chorelist
 
   def initialize(chorelist)
-    @chore1 = "do the dishes"
-    @chore2 = "mow the lawn"
-    @chorelist = [@chore1, @chore2]
-  end
+    @chorelist = chorelist
+  end      
 
   def get_items
     @chorelist
-  end 
-
-  def add_item(new_chore)
-    @chorelist << new_chore
   end
 
-  def delete_item(boring_chore)
-    @chorelist.delete(boring_chore)
+  def delete_item(item)
+    @chorelist.delete(item)
   end
 
-  def get_item(index)
-    @chorelist[index]
+  def add_item(item)
+    @chorelist << item
   end
+
+  def get_item(num)
+    @chorelist[num]
+  end
+
 end
 
-# Driver Code
-# list = TodoList.new(@chorelist)
+
+#-----Driver Code------
+# list = TodoList.new(["do the dishes", "mow the lawn"])
 # p list.get_items
-# list.delete_item("do the dishes")
-# p list.get_items
-# p list.get_item(0)
+# p list.delete_item("do the dishes")
+# p list.add_item("do the dishes")
+# p list.add_item("mop")
+# puts list.get_item(2)
