@@ -64,11 +64,11 @@ class Hangman
         @blanks << " _ "
       end
 
-      puts "*Draws on chalkboard*:#{@blanks.join('')}"
+      p "*Draws on chalkboard*:#{@blanks.join('')}"
     when word.length < 3
-      puts "That word is too short to play hangman with!"
+      p "That word is too short to play hangman with!"
     when word.length > 11
-      puts "That word is too long to play hangman with!"
+      p "That word is too long to play hangman with!"
     end
   end
 
@@ -79,18 +79,12 @@ class Hangman
     case 
     when len <= 5 
       @max_guess = 7
-      # arr = [:one, :two, :three, :four, :five, :six, :seven]
     when len <= 7 
       @max_guess = 9
-      # arr = [:one, :two, :three, :four, :five, :six, :seven, :eigth, :nine]
     when len <= 11
       @max_guess = 12
-      # arr = [:one, :two, :three, :four, :five, :six, :seven, :eigth, :nine, :ten, :eleven, :twelve]
     end
-
-    # arr.each do |guess, letter|
-    #   @guesses[guess] = letter
-    # end
+    
     return @max_guess
   end
 
@@ -121,30 +115,31 @@ class Hangman
   def draw(guess_num)
     case guess_num
     when 1
-      puts "*Draws head of stick figure*"
+      effect = "*Draws head of stick figure*"
     when 2
-      puts "*Draws body of stick figure*"
+      effect = "*Draws body of stick figure*"
     when 3
-      puts "*Draws right arm of stick figure*"
+      effect = "*Draws right arm of stick figure*"
     when 4
-      puts "*Draws left arm of stick figure*"
+      effect = "*Draws left arm of stick figure*"
     when 5
-      puts "*Draws right leg of stick figure*"
+      effect = "*Draws right leg of stick figure*"
     when 6
-      puts "*Draws left leg of stick figure*"
+      effect = "*Draws left leg of stick figure*"
     when 7
-      puts "*Draws smiley face on stick figure*"
+      effect = "*Draws smiley face on stick figure*"
     when 8
-      puts "*Erases smile and draws frown*"
+      effect = "*Erases smile and draws frown*"
     when 9
-      puts "*Draws hat on stick figure*"
+      effect = "*Draws hat on stick figure*"
     when 10
-      puts "*Draws feather on hat*"
+      effect = "*Draws feather on hat*"
     when 11
-      puts "*Draws shades to help the stick figure play it cool*"
+      effect = "*Draws shades to help the stick figure play it cool*"
     when 12
-      puts "*Chalk breaks and disintegrates...*"
+      effect = "*Chalk breaks and disintegrates...*"
     end
+    p effect
   end
 
 
@@ -174,8 +169,8 @@ class Hangman
 end
 
 #---Driver Code---
-# test = Hangman.new
-# test.word_choice("room")
+test = Hangman.new
+test.word_choice("bluets")
 # # # test.num_of_guesses
 # test.guess("r")
 # test.progress("r")
