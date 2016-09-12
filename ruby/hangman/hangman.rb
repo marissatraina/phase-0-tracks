@@ -37,9 +37,8 @@
 #     for every wrong guess it draws a part of stick figure
 
 #   progress method
-#     displays initial blanks to guessing player
-#     for every correct guess
-#     returns hash array with filled in correct letters in word
+#     finds correctly guessed index of letter in letters array
+#     returns blanks array with filled in correct letters 
 
 class Hangman
 
@@ -147,19 +146,19 @@ class Hangman
 end
 
 #---Driver Code---
-test = Hangman.new
-test.word_choice("bluets")
-test.num_of_guesses
-test.guess("b")
-test.guess("l")
-test.guess("aa")
-test.draw(3)
-test.draw(12)
-puts "you are allowed #{test.max_guess} guesses"
-test.=progress("b")
-test.=progress("l")
-test.=progress('t')
-test.=progress('s')
+# test = Hangman.new
+# test.word_choice("bluets")
+# test.num_of_guesses
+# test.guess("b")
+# test.guess("l")
+# test.guess("aa")
+# test.draw(3)
+# test.draw(12)
+# puts "you are allowed #{test.max_guess} guesses"
+# test.= progress("b")
+# test.= progress("l")
+# test.= progress('t')
+# test.= progress('s')
 
 
 
@@ -181,8 +180,57 @@ test.=progress('s')
         # figure out index in letters array that it matches
         # input into blanks index
         # update blanks index and print back to user
-
       # ELSE run draw method
+
+puts "Welcome to Hangman!"
+
+puts "-----------------------------------------------------------"
+
+puts "Enter: 'start' to begin a new game or 'exit' to power down."
+  input = gets.chomp.downcase
+
+puts "-----------------------------------------------------------"
+
+
+while input != 'exit'
+
+  if input == 'start'
+    game = Hangman.new
+
+    puts "Player 1, please enter your name:"
+    name1 = gets.chomp
+    puts "-----------------------------------------------------------"
+
+    puts "Player 2, please enter your name:"
+    name2 = gets.chomp
+    puts "-----------------------------------------------------------"
+
+    puts "#{name1}, please carefully type in a secret word:"
+      stty_settings = %x[stty -g]
+        begin
+        %x[stty -echo]
+        word = gets.chomp.downcase
+        ensure
+        %x[stty #{stty_settings}]
+        end
+
+    game.word_choice(word)
+    puts "-----------------------------------------------------------"
+
+    puts "Please enter 'start' or 'exit:'"
+    input = gets.chomp.downcase
+
+  else
+    puts "Please enter 'start' or 'exit':"
+    input = gets.chomp.downcase
+  end
+
+end
+
+
+
+
+
 
 
 
