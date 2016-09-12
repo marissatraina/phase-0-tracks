@@ -5,7 +5,7 @@ describe Hangman do
   let(:test) { Hangman.new }
 
 it "creates a blank space array of word length" do
-  expect(test.word_choice("bluets")).to eq "*Draws on chalkboard*: _ _ _ _ _ _"
+  expect(test.word_choice("bluets")).to eq "*Draws on chalkboard*: _  _  _  _  _  _"
 end
 
 it "does not allow words shorter than 3 letters" do
