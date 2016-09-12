@@ -63,11 +63,11 @@ class Hangman
       word.length.times do 
         @blanks << " _"
       end
-      p "*Draws on chalkboard*:#{@blanks.join('')}"
+      puts "*Draws on chalkboard*:#{@blanks.join('')}"
     when word.length < 3
-      p "That word is too short to play hangman with!"
+      puts "That word is too short to play hangman with!"
     when word.length > 11
-      p "That word is too long to play hangman with!"
+      puts "That word is too long to play hangman with!"
     end
   end
 
@@ -87,12 +87,12 @@ class Hangman
       arr = [:one, :two, :three, :four, :five, :six, :seven, :eigth, :nine, :ten, :eleven, :twelve]
     end
 
-    p "Player 2, you are allowed #{@max_guess} letter-guesses."
+    puts "Player 2, you are allowed #{@max_guess} letter-guesses."
 
     arr.each do |guess, letter|
       @guesses[guess] = letter
     end
-    p @guesses
+    @guesses
     
   end
 
@@ -137,6 +137,12 @@ class Hangman
   end
 
 
+  def progress(letter)
+    index = @letters.index(letter)
+    new_index = index
+    @blanks[new_index] = letter
+    puts "*Draws in: #{@blanks.join('')}*"
+  end
 
 end
 
@@ -149,7 +155,12 @@ test.guess("l")
 test.guess("aa")
 test.draw(3)
 test.draw(12)
-p "you are allowed #{@max_guess} guesses"
+puts "you are allowed #{test.max_guess} guesses"
+test.=progress("b")
+test.=progress("l")
+test.=progress('t')
+test.=progress('s')
+
 
 
 #----USER INTERFACE----
