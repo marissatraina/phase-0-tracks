@@ -42,14 +42,14 @@
 
 class Hangman
 
-  attr_accessor :word, :max_guess
-  attr_reader :blanks, :word, :guesses
+  attr_accessor :word, :name1, :name2, :blanks
+  attr_reader :word, :guesses
 
   def initialize 
     @word = ""
     @letters = []
     @blanks = []
-    @guesses = {}
+    @guesses = []
     @max_guess = 0
   end
 
@@ -60,8 +60,9 @@ class Hangman
       @word = word
       @letters = @word.split('')
       word.length.times do 
-        @blanks << " _"
+        @blanks << " _ "
       end
+
       puts "*Draws on chalkboard*:#{@blanks.join('')}"
     when word.length < 3
       puts "That word is too short to play hangman with!"
@@ -77,25 +78,24 @@ class Hangman
     case 
     when len <= 5 
       @max_guess = 7
-      arr = [:one, :two, :three, :four, :five, :six, :seven]
+      # arr = [:one, :two, :three, :four, :five, :six, :seven]
     when len <= 7 
       @max_guess = 9
-      arr = [:one, :two, :three, :four, :five, :six, :seven, :eigth, :nine]
+      # arr = [:one, :two, :three, :four, :five, :six, :seven, :eigth, :nine]
     when len <= 11
       @max_guess = 12
-      arr = [:one, :two, :three, :four, :five, :six, :seven, :eigth, :nine, :ten, :eleven, :twelve]
+      # arr = [:one, :two, :three, :four, :five, :six, :seven, :eigth, :nine, :ten, :eleven, :twelve]
     end
 
-    puts "Player 2, you are allowed #{@max_guess} letter-guesses."
-
-    arr.each do |guess, letter|
-      @guesses[guess] = letter
-    end
-    @guesses
-    
+    # arr.each do |guess, letter|
+    #   @guesses[guess] = letter
+    # end
+    return @max_guess
   end
 
+
   def guess(letter)
+    @guesses << letter
     correct = false
 
     @letters.each do |index|
@@ -104,6 +104,17 @@ class Hangman
       end
     end
     correct
+  end
+
+  def repeat_check(letter)
+    @guesses.each do |one|
+      if letter == one
+        puts "You already guessed that letter, try another:"
+        letter = gets.chomp
+      else letter = letter
+      end
+    end
+    p letter
   end
 
   def draw(guess_num)
@@ -137,52 +148,80 @@ class Hangman
 
 
   def progress(letter)
-    index = @letters.index(letter)
-    new_index = index
-    @blanks[new_index] = letter
-    puts "*Draws in: #{@blanks.join('')}*"
+    index = 0
+    len = @word.length
+    arr = []
+
+      while index < len
+        if @letters[index] == letter
+          arr << index 
+        end
+        index += 1
+      end
+
+      arr.each do |ind|
+      @blanks[ind] = letter
+      end
+
+    p "*Draws in: #{@blanks.join('')}*"
+  end
+
+  def victory
+   @blanks.join('') == @word
   end
 
 end
 
 #---Driver Code---
-# test = Hangman.new
-# test.word_choice("bluets")
-# test.num_of_guesses
-# test.guess("b")
-# test.guess("l")
-# test.guess("aa")
-# test.draw(3)
-# test.draw(12)
-# puts "you are allowed #{test.max_guess} guesses"
-# test.= progress("b")
-# test.= progress("l")
-# test.= progress('t')
-# test.= progress('s')
+test = Hangman.new
+test.word_choice("room")
+# # test.num_of_guesses
+test.guess("r")
+test.progress("r")
+test.repeat_check("o")
+# # test.guess("l")
+# # test.guess("aa")
+# # test.draw(3)
+# # test.draw(12)
+# # puts "you are allowed #{test.max_guess} guesses"
+# test.progress("r")
+# test.progress("o")
+# test.progress('m')
+# p test.victory
+# test.progress('s')
 
 
 
-#----USER INTERFACE----
+# #----USER INTERFACE----
 
-# print message "Welcome to Hangman!"
-# player 1 please enter your name:
-# player 2 please enter your name:
-# player 1, please choose a secret word:
-  # run word_choice method 
-  # run num_of_guesses method
-# player 2, you have _ letter-guesses.
-# create [first - twelfth array]
-  # While guesses < max_guess
-  # please enter your first letter-guess:
-    # set guess = first symbol in guess array
-    # run guess method
-      # IF guess is correct 
-        # figure out index in letters array that it matches
-        # input into blanks index
-        # update blanks index and print back to user
-      # ELSE run draw method
+# # print message "Welcome to Hangman!"
+# # player 1 please enter your name:
+# # player 2 please enter your name:
+# # player 1, please choose a secret word:
+#   # run word_choice method 
+#   # run num_of_guesses method
+# # player 2, you have _ letter-guesses.
+# # create [first - twelfth array]
+#   # While guesses < max_guess
+#   # For every guess
+#     # set guess = first symbol in guess array
+#     # check if guess matches any previous guess
+#     # run guess method
+#       # IF guess is correct 
+#         # figure out index (or indices) in letters array that it matches
+#         # input into blanks index
+#         # update blanks index and print back to user
+#       # ELSE run draw method
 
 puts "Welcome to Hangman!"
+puts "   - - - - - -"
+puts "   |         |"
+puts "   |"
+puts "   |"
+puts "   |"
+puts "   |"
+puts "   |"
+puts " - - -"
 
 puts "-----------------------------------------------------------"
 
@@ -214,23 +253,86 @@ while input != 'exit'
         %x[stty #{stty_settings}]
         end
 
+    puts "-----------------------------------------------------------"
+
     game.word_choice(word)
     puts "-----------------------------------------------------------"
 
-    puts "Please enter 'start' or 'exit:'"
+    puts "#{name2}, you are allowed #{game.num_of_guesses} letter guesses."
+
+    # first through twelfth array
+      order = ["first",
+               "second",
+               "third",
+               "fourth",
+               "fifth",
+               "sixth",
+               "seventh",
+               "eighth",
+               "ninth",
+               "tenth",
+               "eleventh",
+               "twelfth" ]
+
+      case
+      when game.num_of_guesses == 7
+        order.delete("eighth")
+        order.delete("ninth")
+        order.delete("tenth")
+        order.delete("eleventh")
+        order.delete("twelfth")
+        
+      when game.num_of_guesses == 9
+        order.delete("tenth")
+        order.delete("eleventh")
+        order.delete("twelfth") 
+      end
+
+
+        @wrong = 1
+
+        order.each do |nth|
+          break if game.victory == true          
+          puts "Enter your #{nth} guess:"
+          guess_letter = gets.chomp.downcase
+          guess_letter = game.repeat_check(guess_letter)
+              case game.guess(guess_letter)
+              when true
+                game.progress(guess_letter)
+              when false
+                game.draw(@wrong)
+                @wrong += 1 
+              end
+          end
+        end
+
+        if game.victory == true
+          puts "Congratulations #{name2}, you win!!"
+        else puts "Womp womp wooomp. Better luck next time #{name2}..."
+        end
+        
+
+    puts "-----------------------------------------------------------"
+
+    puts "Please enter 'start' to begin a new game or 'exit:'"
     input = gets.chomp.downcase
 
-  else
-    puts "Please enter 'start' or 'exit':"
-    input = gets.chomp.downcase
   end
 
-end
 
 
+#---User Driver Code----
+# game = Hangman.new
+# game.word_choice("room")
+# # # game.guess("r")
+# game.progress("r")
+# # game.guess("o")
+# game.progress("o")
+# # game.guess('m')
+# game.progress('m')
 
-
-
+# # # p game.blanks.join('') == game.word
+# p game.victory
 
 
 
