@@ -109,7 +109,7 @@ class Hangman
       else letter = letter
       end
     end
-    p letter
+    letter
   end
 
   def draw(guess_num)
@@ -169,8 +169,8 @@ class Hangman
 end
 
 #---Driver Code---
-test = Hangman.new
-test.word_choice("bluets")
+# test = Hangman.new
+# test.word_choice("bluets")
 # # # test.num_of_guesses
 # test.guess("r")
 # test.progress("r")
