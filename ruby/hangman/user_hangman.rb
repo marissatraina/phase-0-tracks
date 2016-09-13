@@ -107,8 +107,11 @@ while input != 'exit'
               case game.guess(guess_letter)
               when true
                 game.progress(guess_letter)
+                puts "-----------------------------------------------------------"
               when false
                 game.draw(@wrong)
+                puts "-----------------------------------------------------------"
+
                 @wrong += 1 
               end
           end
