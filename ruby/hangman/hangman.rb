@@ -42,8 +42,8 @@
 
 class Hangman
 
-  attr_accessor :word
   attr_reader :blanks
+  attr_accessor :word
   
 
   def initialize 
@@ -64,11 +64,11 @@ class Hangman
         @blanks << " _ "
       end
 
-      p "*Draws on chalkboard*:#{@blanks.join('')}"
+      puts "*Draws on chalkboard*:#{@blanks.join('')}"
     when word.length < 3
-      p "That word is too short to play hangman with!"
+      puts "That word is too short to play hangman with!"
     when word.length > 11
-      p "That word is too long to play hangman with!"
+      puts "That word is too long to play hangman with!"
     end
   end
 
@@ -139,7 +139,7 @@ class Hangman
     when 12
       effect = "*Chalk breaks and disintegrates...*"
     end
-    p effect
+    puts effect
   end
 
 
@@ -159,7 +159,7 @@ class Hangman
       @blanks[ind] = letter
       end
 
-    p "*Draws in: #{@blanks.join('')}*"
+    puts "*Draws in: #{@blanks.join('')}*"
   end
 
   def victory
