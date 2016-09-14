@@ -100,3 +100,33 @@ end
 
 #=======================================================================
 # Reflection Section
+#--What are the differences between the two different hash 
+#--syntaxes shown in the state_data file?
+
+# The exterior hash uses arrows to assign the interior hash as the 
+# string's value while the interior hash uses colons to assign 
+# the floats to each variable.
+
+#--What does require_relative do? How is it different from require?
+
+# As mentioned previously, require relative can load files in the 
+# same directory as the working file whereas require can load
+# any file with an absolute path or within the built-in library
+
+#--What are some ways to iterate through a hash?
+
+# There a plenty of ways to iterate through a hash. You can use a block,
+# built-in methods, or in this case a written instance method for a specific
+# iterative method.
+
+#--When refactoring virus_effects, what stood out to you about
+#--the variables, if anything?
+
+# It seemed superfluous to take in more than two arguments when
+# two other methods were combined to create virus effects.
+
+#--What concept did you most solidify in this challenge?
+
+# The overall concept of creating a class along with useful instance
+# methods was solidified for me. Also working with hashes was further 
+# solidified.
