@@ -3,6 +3,8 @@ require_relative 'hangman'
 #----USER INTERFACE----
 
 # print message "Welcome to Hangman!"
+# print start or exit message
+# UNTIL 'exit'
 # player 1 please enter your name:
 # player 2 please enter your name:
 # player 1, please choose a secret word:
@@ -10,16 +12,14 @@ require_relative 'hangman'
   # run num_of_guesses method
 # player 2, you have _ letter-guesses.
 # create [first - twelfth array]
-  # While guesses < max_guess
-  # For every guess
-    # set guess = first symbol in guess array
-    # check if guess matches any previous guess
+  # Size array based on guess amount
+  # For every letter input
+    # IF guess does not match any previous guess
+    # input guess into guess array
     # run guess method
       # IF guess is correct 
-        # figure out index (or indices) in letters array that it matches
-        # input into blanks index
-        # update blanks index and print back to user
-      # ELSE run draw method
+        # run progress method
+      # ELSE run draw_figure method & progress method
 
 puts "Welcome to Hangman!"
 puts "   - - - - - -"
@@ -39,7 +39,7 @@ puts "Enter: 'start' to begin a new game or 'exit' to power down."
 puts "-----------------------------------------------------------"
 
 
-while input != 'exit'
+until input == 'exit'
 
   if input == 'start'
     game = Hangman.new
@@ -81,21 +81,8 @@ while input != 'exit'
                "tenth",
                "eleventh",
                "twelfth" ]
-
-      case
-      when game.num_of_guesses == 7
-        order.delete("eighth")
-        order.delete("ninth")
-        order.delete("tenth")
-        order.delete("eleventh")
-        order.delete("twelfth")
-        
-      when game.num_of_guesses == 9
-        order.delete("tenth")
-        order.delete("eleventh")
-        order.delete("twelfth") 
-      end
-
+      index = game.max_guess - 1
+      order = order[0..index]
 
         @wrong = 1
 
@@ -109,7 +96,7 @@ while input != 'exit'
                 game.progress(guess_letter)
                 puts "-----------------------------------------------------------"
               when false
-                game.draw(@wrong)
+                game.draw_figure(@wrong)
                 puts "-----------------------------------------------------------"
 
                 @wrong += 1 

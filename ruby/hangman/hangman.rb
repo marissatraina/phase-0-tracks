@@ -33,7 +33,7 @@
 #     guess is considered wrong
     
 
-#   draw method
+#   draw_figure method
 #     for every wrong guess it draws a part of stick figure
 
 #   progress method
@@ -43,7 +43,7 @@
 class Hangman
 
   attr_reader :blanks
-  attr_accessor :word
+  attr_accessor :word, :max_guess
   
 
   def initialize 
@@ -56,35 +56,31 @@ class Hangman
 
 
   def word_choice(word)
-    case  
-    when word.length <= 11 && word.length >= 3
+    case word.length
+    when 3..11
       @word = word
       @letters = @word.split('')
-      word.length.times do 
-        @blanks << " _ "
-      end
-
+        word.length.times do 
+          @blanks << " _ "
+        end
       puts "*Draws on chalkboard*:#{@blanks.join('')}"
-    when word.length < 3
+    when 0..3
       puts "That word is too short to play hangman with!"
-    when word.length > 11
+    else
       puts "That word is too long to play hangman with!"
     end
   end
 
 
   def num_of_guesses
-    len = @word.length
-
-    case 
-    when len <= 5 
-      @max_guess = 7
-    when len <= 7 
+    case @word.length
+    when 3..5
+      @max_guess = 6
+    when 6..7 
       @max_guess = 9
-    when len <= 11
+    when 8..11
       @max_guess = 12
     end
-    
     return @max_guess
   end
 
@@ -112,7 +108,7 @@ class Hangman
     letter
   end
 
-  def draw(guess_num)
+  def draw_figure(guess_num)
     case guess_num
     when 1
       effect = "*Draws head of stick figure*"
@@ -145,11 +141,11 @@ class Hangman
 
   def progress(letter)
     index = 0
-    len = @word.length
     arr = []
 
-      while index < len
+      while index < @word.length
         if @letters[index] == letter
+          puts "~*~ Correct ~*~"
           arr << index 
         end
         index += 1
@@ -158,7 +154,6 @@ class Hangman
       arr.each do |ind|
       @blanks[ind] = letter
       end
-
     puts "*Draws in: #{@blanks.join('')}*"
   end
 
@@ -177,8 +172,8 @@ end
 # test.repeat_check("o")
 # # # test.guess("l")
 # # test.guess("aa")
-# # test.draw(3)
-# # test.draw(12)
+# # test.draw_figure(3)
+# # test.draw_figure(12)
 # # puts "you are allowed #{test.max_guess} guesses"
 # test.progress("r")
 # test.progress("o")
