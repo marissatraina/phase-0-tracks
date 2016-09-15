@@ -2,12 +2,6 @@
 
 # define hangman class
 
-#   initialize with 
-#     word variable 
-#     empty letters array
-#     empty blank spaces array
-#     empty guess hash
-
 #   word_choice method
 #     determines length of word
 #     if word length <= 11 words or >= 3
@@ -45,21 +39,23 @@ class Hangman
   attr_reader :blanks
   attr_accessor :word, :max_guess
   
-
+# initialize with instance variables: word, max_guess letters arr, 
+# blanks arr, guesses arr,
   def initialize 
     @word = ""
+    @max_guess = 0
     @letters = []
     @blanks = []
     @guesses = []
-    @max_guess = 0
   end
 
-
+# word_choice method of word parameter allows input based on word length
+# creates letters array  
   def word_choice(word)
     case word.length
     when 3..11
       @word = word
-      @letters = @word.split('')
+      # @letters = @word.split('')
         word.length.times do 
           @blanks << " _ "
         end
@@ -84,77 +80,51 @@ class Hangman
     return @max_guess
   end
 
-
-  def guess(letter)
-    @guesses << letter
-    correct = false
-
-    @letters.each do |index|
-      if index == letter
-        correct = true
-      end
-    end
-    correct
-  end
-
   def repeat_check(letter)
     @guesses.each do |one|
-      if letter == one
+      until letter != one
         puts "You already guessed that letter, try another:"
         letter = gets.chomp
-      else letter = letter
       end
     end
     letter
   end
 
-  def draw_figure(guess_num)
-    case guess_num
-    when 1
-      effect = "*Draws head of stick figure*"
-    when 2
-      effect = "*Draws body of stick figure*"
-    when 3
-      effect = "*Draws right arm of stick figure*"
-    when 4
-      effect = "*Draws left arm of stick figure*"
-    when 5
-      effect = "*Draws right leg of stick figure*"
-    when 6
-      effect = "*Draws left leg of stick figure*"
-    when 7
-      effect = "*Draws smiley face on stick figure*"
-    when 8
-      effect = "*Erases smile and draws frown*"
-    when 9
-      effect = "*Draws hat on stick figure*"
-    when 10
-      effect = "*Draws feather on hat*"
-    when 11
-      effect = "*Draws shades to help the stick figure play it cool*"
-    when 12
-      effect = "*Chalk breaks and disintegrates...*"
-    end
-    puts effect
+  def guess(letter)
+    @guesses << letter
+    correct = false
+      @word.each_char do |index|
+        if index == letter
+          correct = true
+        end
+      end
+    correct
   end
 
+  def draw_figure(wrong_guess)
+    drawing = [ "*Draws head of stick figure*",
+                "*Draws body of stick figure*",
+                "*Draws right arm of stick figure*",
+                "*Draws left arm of stick figure*",
+                "*Draws right leg of stick figure*",
+                "*Draws left leg of stick figure*",
+                "*Draws smiley face on stick figure*",
+                "*Erases smile and draws frown*",
+                "*Draws hat on stick figure*",
+                "*Draws feather on hat*",
+                "*Draws shades to help the stick figure play it cool*",
+                "*Chalk breaks and disintegrates...*"]
+    puts drawing[wrong_guess]
+  end
 
   def progress(letter)
-    index = 0
-    arr = []
-
-      while index < @word.length
-        if @letters[index] == letter
-          puts "~*~ Correct ~*~"
-          arr << index 
-        end
-        index += 1
+    word.each_char.with_index do |char, index|
+      if char == letter
+        @blanks[index] = letter
       end
-
-      arr.each do |ind|
-      @blanks[ind] = letter
-      end
-    puts "*Draws in: #{@blanks.join('')}*"
+    end
+    puts "~*~ Correct ~*~"
+    puts "#{@blanks.join('')}"
   end
 
   def victory

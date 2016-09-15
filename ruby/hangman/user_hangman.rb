@@ -84,7 +84,7 @@ until input == 'exit'
       index = game.max_guess - 1
       order = order[0..index]
 
-        @wrong = 1
+        @wrong = 0
 
         order.each do |nth|
           break if game.victory == true          
@@ -98,7 +98,6 @@ until input == 'exit'
               when false
                 game.draw_figure(@wrong)
                 puts "-----------------------------------------------------------"
-
                 @wrong += 1 
               end
           end
