@@ -55,7 +55,8 @@ class Hangman
     else
         @guesses.each do |one|
           until letter != one
-            puts "You already guessed that letter, try another:"
+            puts "Already guessed: #{@guesses.join(', ')}"
+            puts "You already guessed that letter, try a new letter:"
             letter = gets.chomp
           end
         end
@@ -91,7 +92,7 @@ class Hangman
                 "*Draws feather on hat*",
                 "*Draws shades to help the stick figure play it cool*",
                 "*Chalk breaks and disintegrates...*"]
-    puts drawing[wrong_guess]
+    drawing[wrong_guess]
   end
 
 # updates blanks spaces depending on where the letter matches in the word
