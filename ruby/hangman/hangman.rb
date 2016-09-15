@@ -1,65 +1,26 @@
-#---Hangman Class---
-
-# define hangman class
-
-#   initialize with 
-#     word variable 
-#     empty letters array
-#     empty blank spaces array
-#     empty guess hash
-
-#   word_choice method
-#     determines length of word
-#     if word length <= 11 words or >= 3
-#       stores chosen word into word variable
-#     splits word into letters
-#     store letters into array
-#     creates blank space array
-  
-#   number_of_guesses method
-#     allows for 7 guesses if the word length is <= 5 letters
-#       stores 7 guess symbols in guess hash
-#     allows for 9 guesses if the word length is <= 7 letters
-#       stores 9 guess symbols in guess hashes
-#     allows for 12 guesses if the word length is <= 11 letters
-#       stores 12 guess symbols in guess hash
-    
-#   guess method
-#     if input string length = 1
-#       stores guess into respective hash symbol
-#     iterates through letters array to check for matches
-#     if letter doesn’t match any previously stored symbols
-#       & if letter doesn’t match letters in word
-#     guess is considered wrong
-    
-
-#   draw_figure method
-#     for every wrong guess it draws a part of stick figure
-
-#   progress method
-#     finds correctly guessed index of letter in letters array
-#     returns blanks array with filled in correct letters 
+#===Hangman Class====
 
 class Hangman
 
   attr_reader :blanks
   attr_accessor :word, :max_guess
   
-
+# initialize with instance variables: word, max_guess,
+# blanks arr, guesses arr,
   def initialize 
     @word = ""
-    @letters = []
+    @max_guess = 0
     @blanks = []
     @guesses = []
-    @max_guess = 0
   end
 
-
+# word_choice method of word parameter allows input based on word length
+# when in length range, creates blank spaces arr
+# prints message if outside of word length range
   def word_choice(word)
     case word.length
     when 3..11
       @word = word
-      @letters = @word.split('')
         word.length.times do 
           @blanks << " _ "
         end
@@ -71,7 +32,7 @@ class Hangman
     end
   end
 
-
+# depending on length of word, max_guess is assigned
   def num_of_guesses
     case @word.length
     when 3..5
@@ -84,86 +45,76 @@ class Hangman
     return @max_guess
   end
 
-
-  def guess(letter)
-    @guesses << letter
-    correct = false
-
-    @letters.each do |index|
-      if index == letter
-        correct = true
-      end
-    end
-    correct
-  end
-
+# repeat_check method takes letter as parameter and checks that the
+# letter is proper length & does not match any previous guesses in arr
+# until letter is a new guess asks user for new letter, returns accepted guess
   def repeat_check(letter)
-    @guesses.each do |one|
-      if letter == one
-        puts "You already guessed that letter, try another:"
-        letter = gets.chomp
-      else letter = letter
-      end
+    if letter.length != 1 
+      puts "Please guess one letter:"
+      letter = gets.chomp
+    else
+        @guesses.each do |one|
+          until letter != one
+            puts "Already guessed: #{@guesses.join(', ')}"
+            puts "You already guessed that letter, try a new letter:"
+            letter = gets.chomp
+          end
+        end
     end
     letter
   end
 
-  def draw_figure(guess_num)
-    case guess_num
-    when 1
-      effect = "*Draws head of stick figure*"
-    when 2
-      effect = "*Draws body of stick figure*"
-    when 3
-      effect = "*Draws right arm of stick figure*"
-    when 4
-      effect = "*Draws left arm of stick figure*"
-    when 5
-      effect = "*Draws right leg of stick figure*"
-    when 6
-      effect = "*Draws left leg of stick figure*"
-    when 7
-      effect = "*Draws smiley face on stick figure*"
-    when 8
-      effect = "*Erases smile and draws frown*"
-    when 9
-      effect = "*Draws hat on stick figure*"
-    when 10
-      effect = "*Draws feather on hat*"
-    when 11
-      effect = "*Draws shades to help the stick figure play it cool*"
-    when 12
-      effect = "*Chalk breaks and disintegrates...*"
-    end
-    puts effect
-  end
-
-
-  def progress(letter)
-    index = 0
-    arr = []
-
-      while index < @word.length
-        if @letters[index] == letter
-          puts "~*~ Correct ~*~"
-          arr << index 
+# guess method takes letter parameter and stores it in guess arr
+# checks word for match, returns true if there is a match
+  def guess(letter)
+    @guesses << letter
+    correct = false
+      @word.each_char do |index|
+        if index == letter
+          correct = true
         end
-        index += 1
       end
-
-      arr.each do |ind|
-      @blanks[ind] = letter
-      end
-    puts "*Draws in: #{@blanks.join('')}*"
+    correct
   end
 
+# draw_figure method draws hangman stick figure depending on how many
+# wrong guesses there are 
+  def draw_figure(wrong_guess)
+    drawing = [ "*Draws head of stick figure*",
+                "*Draws body of stick figure*",
+                "*Draws right arm of stick figure*",
+                "*Draws left arm of stick figure*",
+                "*Draws right leg of stick figure*",
+                "*Draws left leg of stick figure*",
+                "*Draws smiley face on stick figure*",
+                "*Erases smile and draws frown*",
+                "*Draws hat on stick figure*",
+                "*Draws feather on hat*",
+                "*Draws shades to help the stick figure play it cool*",
+                "*Chalk breaks and disintegrates...*"]
+    drawing[wrong_guess]
+  end
+
+# updates blanks spaces depending on where the letter matches in the word
+# displays correct message to player with progress of guesses
+  def progress(letter)
+    word.each_char.with_index do |char, index|
+      if char == letter
+        @blanks[index] = letter
+      end
+    end
+    puts "~*~ Correct ~*~"
+    puts "Draws in: #{@blanks.join('')}"
+  end
+
+# returns true if word is equal to blanks arr
   def victory
    @blanks.join('') == @word
   end
 
 end
 
-#---Driver Code---
+#====Driver Code======
 # test = Hangman.new
 # test.word_choice("bluets")
 # # # test.num_of_guesses

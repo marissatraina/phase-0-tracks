@@ -1,25 +1,6 @@
 require_relative 'hangman'
 
-#----USER INTERFACE----
-
-# print message "Welcome to Hangman!"
-# print start or exit message
-# UNTIL 'exit'
-# player 1 please enter your name:
-# player 2 please enter your name:
-# player 1, please choose a secret word:
-  # run word_choice method 
-  # run num_of_guesses method
-# player 2, you have _ letter-guesses.
-# create [first - twelfth array]
-  # Size array based on guess amount
-  # For every letter input
-    # IF guess does not match any previous guess
-    # input guess into guess array
-    # run guess method
-      # IF guess is correct 
-        # run progress method
-      # ELSE run draw_figure method & progress method
+#====USER INTERFACE========
 
 puts "Welcome to Hangman!"
 puts "   - - - - - -"
@@ -31,14 +12,12 @@ puts "   |"
 puts "   |"
 puts " - - -"
 
-puts "-----------------------------------------------------------"
-
 puts "Enter: 'start' to begin a new game or 'exit' to power down."
-  input = gets.chomp.downcase
+puts "==========================================================="
+input = gets.chomp.downcase
 
-puts "-----------------------------------------------------------"
-
-
+# UNTIL user inputs exit or start will either start game or ask for 
+# new input
 until input == 'exit'
 
   if input == 'start'
@@ -52,6 +31,7 @@ until input == 'exit'
     name2 = gets.chomp
     puts "-----------------------------------------------------------"
 
+# when user inputs secret word, letters will not be displayed in terminal
     puts "#{name1}, please carefully type in a secret word:"
       stty_settings = %x[stty -g]
         begin
@@ -60,12 +40,11 @@ until input == 'exit'
         ensure
         %x[stty #{stty_settings}]
         end
-
     puts "-----------------------------------------------------------"
-
     game.word_choice(word)
     puts "-----------------------------------------------------------"
 
+# displays number of guesses based on word length to P2
     puts "#{name2}, you are allowed #{game.num_of_guesses} letter guesses."
 
     # first through twelfth array
@@ -81,10 +60,11 @@ until input == 'exit'
                "tenth",
                "eleventh",
                "twelfth" ]
-      index = game.max_guess - 1
-      order = order[0..index]
+      index = game.max_guess - 1   #matches index to guesses so that 5 guesses stops at "fifth"
+      order = order[0..index]      
 
-        @wrong = 1
+  # every wrong guess is fed to draw_figure
+        @wrong = 0
 
         order.each do |nth|
           break if game.victory == true          
@@ -96,9 +76,8 @@ until input == 'exit'
                 game.progress(guess_letter)
                 puts "-----------------------------------------------------------"
               when false
-                game.draw_figure(@wrong)
+                puts game.draw_figure(@wrong)
                 puts "-----------------------------------------------------------"
-
                 @wrong += 1 
               end
           end
@@ -116,18 +95,3 @@ until input == 'exit'
     input = gets.chomp.downcase
 
   end
-
-
-
-#---User Driver Code----
-# game = Hangman.new
-# game.word_choice("room")
-# # # game.guess("r")
-# game.progress("r")
-# # game.guess("o")
-# game.progress("o")
-# # game.guess('m')
-# game.progress('m')
-
-# # # p game.blanks.join('') == game.word
-# p game.victory
