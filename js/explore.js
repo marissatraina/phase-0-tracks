@@ -1,9 +1,8 @@
-// REVERSE FUNCTION
+//==REVERSE FUNCTION===========
 // define function reverse(str)
 // define reverse word as empty string
-// use str.length to gauge how long string is
-// set i equal to the length of the string minus 1
-// loop through str i backwards 
+// FOR str.length - 1, UNTIL index is >= 0
+// move backwards through the index of the str 
 // add each constant to empty str
 // return reversed word
 
@@ -16,7 +15,7 @@ function reverse(str) {
   return reverseWord
 }
 
-// Driver Code
+//===Driver Code======
 var backwards = console.log(reverse("yellow"));
 if (1==1) {
   console.log(backwards);
