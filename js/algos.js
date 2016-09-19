@@ -1,4 +1,4 @@
-//----Release 0: Find the Longest Phrase----
+//===Release 0: Find the Longest Phrase===
 
   // Define longest phrase function that takes array as argument
       // Loop through array depending on length of array
@@ -59,7 +59,7 @@ var inCommon = function(object1, object2) {
   for (var char1 in object1) {
     for (var char2 in object2) {
       if (char1 == char2) { 
-        if (object1[char1].toString() == object2[char1].toString()) {
+        if (object1[char1] == object2[char1]) {
           return true;
         }
       }
