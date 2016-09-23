@@ -1,0 +1,13 @@
+===Joining 3 Tables into one Display=====
+ 
+SELECT users.first_name, users.last_name, business.name, reviews.stars, reviews.comment
+   ...> FROM reviews, business, users
+   ...> WHERE reviews.business_id = business.id
+   ...> AND reviews.user_id = users.id;                                       
+
+   => Angela|Jolie|Lotus Yoga|4|Amazing instructor
+   => Mandy|Kaling|Sushi World|5|Incredible shrimp tempura roll!
+   => Bradford|Pitt|Amir's Towing|1|Amir stole my keys!!
+
+
+===Viewing data from 3 tables for one business=======
