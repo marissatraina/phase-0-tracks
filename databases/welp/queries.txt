@@ -11,3 +11,10 @@ SELECT users.first_name, users.last_name, business.name, reviews.stars, reviews.
 
 
 ===Viewing data from 3 tables for one business=======
+SELECT users.first_name, users.last_name, business.name, reviews.stars, reviews.comment
+   ...> FROM reviews, business, users
+   ...> WHERE reviews.business_id = business.id
+   ...> AND reviews.user_id = users.id
+   ...> AND business.name = "Sushi World";
+
+   => Mandy|Kaling|Sushi World|5|Incredible shrimp tempura roll!
