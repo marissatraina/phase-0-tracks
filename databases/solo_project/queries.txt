@@ -1,0 +1,90 @@
+1) ===Display information in one table===
+SELECT roster.id, roster.name, roster.year, roster.passing, houses.house
+   ...> FROM roster, houses
+   ...> WHERE roster.house_id = houses.id;
+
+=> 1|Tabitha Bainbridge|4|true|Slytherin
+=> 2|Marcus Belby|5|false|Ravenclaw
+=> 3|Katie Bell|5|true|Gryffindor
+=> 4|Lavendar Brown|5|true|Gryffindor
+=> 5|Cho Chang|5|true|Ravenclaw
+=> 6|Vincent Crabbe|5|false|Slytherin
+=> 7|Cedric Diggory|6|true|Hufflepuff
+=> 8|Seamus Finnigan|5|false|Gryffindor
+=> 9|Gregory Goyle|5|true|Slytherin
+=> 10|Hermione Granger|5|true|Gryffindor
+=> 11|Lee Jordan|4|false|Gryffindor
+=> 12|Neville Longbottom|5|true|Gryffindor
+=> 13|Luna Lovegood|5|true|Ravenclaw
+=> 14|Draco Malfoy|5|true|Slytherin
+=> 15|Cormac McLaggen|6|true|Gryffindor
+=> 16|Harry Potter|5|true|Gryffindor
+=> 17|Ronald Weasley|5|false|Gryffindor
+
+2) ===Update an item that meets some condition===
+UPDATE roster SET passing = "true" WHERE id = 17;
+
+3) ===Display the information in both tables using one query===
+SELECT * FROM roster JOIN houses ON roster.house_id = houses.id;
+
+=> 1|Tabitha Bainbridge|4|true|2|2|Slytherin
+=> 2|Marcus Belby|5|false|3|3|Ravenclaw
+=> 3|Katie Bell|5|true|1|1|Gryffindor
+=> 4|Lavendar Brown|5|true|1|1|Gryffindor
+=> 5|Cho Chang|5|true|3|3|Ravenclaw
+=> 6|Vincent Crabbe|5|false|Slytherin
+=> 7|Cedric Diggory|6|true|Hufflepuff
+=> 8|Seamus Finnigan|5|false|Gryffindor
+=> 9|Gregory Goyle|5|true|Slytherin
+=> 10|Hermione Granger|5|true|Gryffindor
+=> 11|Lee Jordan|4|false|Gryffindor
+=> 12|Neville Longbottom|5|true|Gryffindor
+=> 13|Luna Lovegood|5|true|Ravenclaw
+=> 14|Draco Malfoy|5|true|Slytherin
+=> 15|Cormac McLaggen|6|true|Gryffindor
+=> 16|Harry Potter|5|true|Gryffindor
+=> 17|Ronald Weasley|5|true|Gryffindor
+
+4) ===Display a narrower collection of columns===
+SELECT roster.name, houses.house
+   ...> FROM roster, houses
+   ...> WHERE roster.house_id = houses.id;
+
+=> Tabitha Bainbridge|Slytherin
+=> Marcus Belby|Ravenclaw
+=> Katie Bell|Gryffindor
+=> Lavendar Brown|Gryffindor
+=> Cho Chang|Ravenclaw
+=> Vincent Crabbe|Slytherin
+=> Cedric Diggory|Hufflepuff
+=> Seamus Finnigan|Gryffindor
+=> Gregory Goyle|Slytherin
+=> Hermione Granger|Gryffindor
+=> Lee Jordan|Gryffindor
+=> Neville Longbottom|Gryffindor
+=> Luna Lovegood|Ravenclaw
+=> Draco Malfoy|Slytherin
+=> Cormac McLaggen|Gryffindor
+=> Harry Potter|Gryffindor
+=> Ronald Weasley|Gryffindor
+
+5) ===Delete an item that meets some condition===
+DELETE FROM roster
+   ...> WHERE passing = "false";
+
+===JOIN TYPES====
+(INNER) JOIN --> select records that have matching values in both tables
+
+LEFT (OUTER) JOIN --> select records from the first (left-most) table with matching right table records
+
+RIGHT (OUTER) JOIN --> select records from the second (right-most) table with matching left table records
+
+FULL(OUTER) JOIN --> select all records that match either left or right table records
+
+SELECT roster.name, houses.house
+   ...> FROM roster JOIN houses
+   ...> ON roster.id = houses.id;
+=> Tabitha Bainbridge|Gryffindor
+=> Katie Bell|Ravenclaw
+=> Lavendar Brown|Hufflepuff
+
