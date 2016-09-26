@@ -31,12 +31,17 @@ class Centsful
     @groupings[section] = percentage
   end
 
+  def remove_group(group)
+    @groupings.delete(group)
+  end
+
   def print_groups
     puts "Paycheck Percentages"
     puts "--------------------"
-    # @groupings.each |section, percentage|
-    #   puts "#{section} --> #{percentage}%"
-    # end
+    @groupings.each do |section, percentage|
+      percentage = percentage * 100
+      puts "#{section} --> #{percentage} %"
+    end
   end
 
 end
@@ -53,6 +58,7 @@ create_table_cmd = <<-SQL
 SQL
 
 db.execute(create_table_cmd)
+# db.execute("")
 
 #===DRIVER CODE===
 marissa = Centsful.new(2000.25)
@@ -62,4 +68,11 @@ p marissa.total
 marissa.monthly_rent(900)
 p marissa.total
 marissa.allocate("Food", 25)
-# marissa.print_groups
+marissa.print_groups
+marissa.allocate("Fun", 35)
+marissa.print_groups
+marissa.remove_group("Fun")
+marissa.print_groups
+sum = marissa.total
+# db.execute("INSERT INTO budget values (id, log, money, total) VALUES (1, 'Fun', -15.00, 2000)")
+
