@@ -38,8 +38,8 @@ class Centsful
     end
   end
 
-  def update(db, username, total)
-    db.execute("INSERT INTO budget (username, log, money, total) VALUES (?, ?, ?, ?)", [username, "New Account", total, total])
+  def update(db, username, memo, total, money=@total)
+    db.execute("INSERT INTO budget (username, log, money, total) VALUES (?, ?, ?, ?)", [username, memo, money, total])
   end
 
   def display_records(db, username)
