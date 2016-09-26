@@ -31,23 +31,28 @@ class Centsful
     @groupings[section] = percentage
   end
 
-  # def print_groups
-  #   puts "Paycheck Percentages"
-  #   puts "--------------------"
-  #   @groupings.each |section, percentage|
-  #     puts "#{section} --> #{percentage}%"
-  #   end
-  # end
+  def print_groups
+    puts "Paycheck Percentages"
+    puts "--------------------"
+    # @groupings.each |section, percentage|
+    #   puts "#{section} --> #{percentage}%"
+    # end
+  end
 
 end
 
 
-# # create budget log table
-# create_table_cmd = <<-SQL
-#   CREATE TABLE IF NOT EXISTS budget (
-#   id INTEGER PRIMARY KEY,ru
-#   )
-# SQL
+# create budget log table
+create_table_cmd = <<-SQL
+  CREATE TABLE IF NOT EXISTS budget (
+  id INTEGER PRIMARY KEY,
+  log VARCHAR(255),
+  money INT,
+  total INT
+  )
+SQL
+
+db.execute(create_table_cmd)
 
 #===DRIVER CODE===
 marissa = Centsful.new(2000.25)
@@ -56,5 +61,5 @@ marissa.store(550)
 p marissa.total
 marissa.monthly_rent(900)
 p marissa.total
-# marissa.allocate("Food", 25)
+marissa.allocate("Food", 25)
 # marissa.print_groups
