@@ -1,10 +1,4 @@
-#======Centsful Database====
-
-require 'sqlite3'
-
-# create sqlite3 database
-
-db = SQLite3::Database.new("budget.db")
+#======CENTSFUL CLASS=====
 
 class Centsful
   attr_reader :total
@@ -44,35 +38,25 @@ class Centsful
     end
   end
 
+  def update(db, username, total)
+    db.execute("INSERT INTO budget (username, log, money, total) VALUES (?, ?, ?, ?)", [username, "New Account", total, total])
+  end
+
 end
 
 
-# create budget log table
-create_table_cmd = <<-SQL
-  CREATE TABLE IF NOT EXISTS budget (
-  id INTEGER PRIMARY KEY,
-  log VARCHAR(255),
-  money INT,
-  total INT
-  )
-SQL
-
-db.execute(create_table_cmd)
-# db.execute("")
-
 #===DRIVER CODE===
-marissa = Centsful.new(2000.25)
-p marissa.total
-marissa.store(550)
-p marissa.total
-marissa.monthly_rent(900)
-p marissa.total
-marissa.allocate("Food", 25)
-marissa.print_groups
-marissa.allocate("Fun", 35)
-marissa.print_groups
-marissa.remove_group("Fun")
-marissa.print_groups
-sum = marissa.total
-# db.execute("INSERT INTO budget values (id, log, money, total) VALUES (1, 'Fun', -15.00, 2000)")
+# marissa = Centsful.new(2000.25)
+# p marissa.total
+# marissa.store(550)
+# p marissa.total
+# marissa.monthly_rent(900)
+# p marissa.total
+# marissa.allocate("Food", 25)
+# marissa.print_groups
+# marissa.allocate("Fun", 35)
+# marissa.print_groups
+# marissa.remove_group("Fun")
+# marissa.print_groups
+# sum = marissa.total
 
