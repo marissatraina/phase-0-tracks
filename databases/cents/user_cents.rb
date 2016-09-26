@@ -33,11 +33,21 @@ until input == 'exit'
       username = gets.chomp.downcase
 
       puts "Enter your current total savings down to the cents with digits only:"
-      total = gets.chomp.to_f
-      total = total.round(2)
-      account = Centsful.new(total)
-      p account.total
-      account.update(db, username, total)
+      @total = gets.chomp.to_f
+      account = Centsful.new(@total)
+      account.update(db, username, @total)
+      account.display_records(db, username)
+
+      puts "Would like to enter this week's paycheck?(y/n)"
+      pay = gets.chomp.downcase
+      if pay == 'y'
+        puts "Enter amount down to the cents:"
+        paycheck = gets.chomp.to_f.round(2)
+        account.store(paycheck)
+        p account.total
+      end
+
+
     end
 
   end

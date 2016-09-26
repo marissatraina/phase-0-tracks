@@ -1,7 +1,7 @@
 #======CENTSFUL CLASS=====
 
 class Centsful
-  attr_reader :total
+  attr_accessor :total
 
   def initialize(total)
     @total = total.round(2)
@@ -40,6 +40,12 @@ class Centsful
 
   def update(db, username, total)
     db.execute("INSERT INTO budget (username, log, money, total) VALUES (?, ?, ?, ?)", [username, "New Account", total, total])
+  end
+
+  def display_records(db, username)
+    arr = db.execute("SELECT * FROM budget WHERE username = ?", [username]) 
+    arr = arr.join(' | ') 
+    puts arr
   end
 
 end
