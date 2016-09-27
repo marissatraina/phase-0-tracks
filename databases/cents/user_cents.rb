@@ -19,32 +19,45 @@ db.execute(create_log_cmd)
 
 
 #====CENTSFUL USER INTERFACE====
-puts "Welcome to Centsful!"
-puts "Enter 'start' to begin budgeting or 'exit' to shut down:"
-input = gets.chomp.downcase 
+# puts "Welcome to Centsful!"
+# puts "Enter 'start' to begin budgeting or 'exit' to shut down:"
+# input = gets.chomp.downcase 
 
-until input == 'exit'
+# until input == 'exit'
 
-  if input == 'start'
-  puts "Enter 'new' if you are new or enter your username:"
-  username = gets.chomp.downcase
-    if username == 'new'
-      puts "Please enter a lowercase username that you will remember:"
-      username = gets.chomp.downcase
+#   if input == 'start'
+#   puts "Enter 'new' if you are new or enter your username:"
+#   username = gets.chomp.downcase
+#     if username == 'new'
+#       puts "Please enter a lowercase username that you will remember:"
+#       username = gets.chomp.downcase
 
-      puts "Enter your current total savings down to the cents with digits only:"
-      total = gets.chomp.to_f
-      total = total.round(2)
-      account = Centsful.new(total)
-      p account.total
-      account.update(db, username, total)
-    end
+#       puts "Enter your current total savings down to the cents with digits only:"
+#       total = gets.chomp.to_f
+#       account = Centsful.new(total)
+#       account.update(db, username, "new account", account.total)
+#       account.display_records(db, username)
 
-  end
+#       puts "Would like to enter this week's paycheck?(y/n)"
+#       pay = gets.chomp.downcase
+#       if pay == 'y'
+#         puts "Enter amount down to the cents:"
+#         paycheck = gets.chomp.to_f.round(2)
+#         account.store(paycheck)
+#         account.update(db, username, "5/12 paycheck", account.total, paycheck)
+#         account.display_records(db, username)
+#       end
 
-  puts "Please enter 'start' to budget or 'exit':"
-  input = gets.chomp.downcase
-end
+
+#     end
+
+#   end
+
+#   puts "Please enter 'start' to budget or 'exit':"
+#   input = gets.chomp.downcase
+# end
 
 #====DRIVER CODE====
-
+marissa = Centsful.new(2000.25)
+p marissa.total
+marissa.display_records(db, "marissatraina")
