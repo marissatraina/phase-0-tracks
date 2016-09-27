@@ -4,9 +4,9 @@ class Centsful
   attr_accessor :total
 
   def initialize(total)
-    @total = total.round(2)
+    @total = total
     @savings = []
-    @groupings = {}
+    @records = {}  
   end
 
   def store(money)
@@ -43,9 +43,22 @@ class Centsful
   end
 
   def display_records(db, username)
-    arr = db.execute("SELECT * FROM budget WHERE username = ?", [username]) 
-    arr = arr.join(' | ') 
-    puts arr
+    tracking = db.execute("SELECT budget.id FROM budget WHERE username = ?", [username])
+    tracking.each do |arr|
+      index = arr[0].to_i
+      usr = db.execute("SELECT budget.username FROM budget WHERE id = ?", [index]) 
+      usr = usr.join('')
+      log = db.execute("SELECT budget.log, budget.money, budget.total FROM budget WHERE id = ?", [index])
+      log = log.join(' | ')
+      @records[usr] = log
+    end
+    p @records
+
+    puts "Username       Memo       Transaction       Balance"
+    puts "===================================================="
+    @records.each do |usr, log|
+      puts "#{usr} => #{log}"
+    end
   end
 
 end
@@ -54,6 +67,7 @@ end
 #===DRIVER CODE===
 # marissa = Centsful.new(2000.25)
 # p marissa.total
+# marissa.display_records(db, "marissatraina")
 # marissa.store(550)
 # p marissa.total
 # marissa.monthly_rent(900)
