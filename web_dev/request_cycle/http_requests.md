@@ -19,4 +19,5 @@
 -504: Gateway Timeout -- there could be a DNS issue, a network device may be down, etc. This can only happen where a caching or proxy server is directly serving the webpage
 
 2. What is the difference between a GET request and a POST  request? When might each be used?
+The request line begins with a method token. A possible method token can either be GET or POST. A GET method is used to retrieve information from the given server using a given uniform resource identifier (URI). Requests using GET should only retrieve data and should have no other effect on the data. A POST method on the other hand is used to send data to the server, for example, customer information, file upload, etc.
 3. Optional bonus question: What is a cookie (the technical kind, not the delicious kind)? How does it relate to HTTP requests?
