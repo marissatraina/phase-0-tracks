@@ -20,4 +20,7 @@
 
 2. What is the difference between a GET request and a POST  request? When might each be used?
 The request line begins with a method token. A possible method token can either be GET or POST. A GET method is used to retrieve information from the given server using a given uniform resource identifier (URI). Requests using GET should only retrieve data and should have no other effect on the data. A POST method on the other hand is used to send data to the server, for example, customer information, file upload, etc.
+
 3. Optional bonus question: What is a cookie (the technical kind, not the delicious kind)? How does it relate to HTTP requests?
+
+A cookie can be seen as an identification tag stored in the user's web browser while the user is browsing. They are sent to the user's web browser by the server so that when next request sent to the same server is from the same user, that user can be identified. This can be useful in a lot of cases to improve user experience--the user may want to be remembered such that their login can be saved or their shopping basket can be remembered if they leave a certain online shopping page accidentally. However, when a page's cookie is approved for one specific reason, that same cookie can be picked up on other servers without a user's full knowledge and used for advertising purposes (for example).  
