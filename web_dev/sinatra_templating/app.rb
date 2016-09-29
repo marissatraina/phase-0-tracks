@@ -8,9 +8,19 @@ db = SQLite3::Database.new("students.db")
 db.results_as_hash = true
 
 # show students on the home page
+
 get '/' do
   @students = db.execute("SELECT * FROM students")
-  erb :home
+  erb :home 
+end
+
+get '/campuses' do
+  @campus = db.execute("SELECT name FROM campuses")
+  erb :campuses
+end
+
+get '/campus/new' do
+  erb :new_campus
 end
 
 get '/students/new' do
@@ -24,4 +34,8 @@ post '/students' do
   redirect '/'
 end
 
+post '/campus' do
+  db.execute("INSERT INTO campuses (name) VALUES (?)", [params['name']])
+  redirect '/campuses'
+end
 # add static resources
