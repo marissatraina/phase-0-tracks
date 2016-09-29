@@ -20,7 +20,7 @@ get '/about/:person' do
 end
 
 get '/:person_1/loves/:person_2' do
-  "#{params[:person_1]} loves #{params[:person_2]}"
+  "#{params[:person_1]} loves #{params[:person_2]}!"
 end
 
 # write a GET route that retrieves
