@@ -1,0 +1,19 @@
+ #halloween {
+  max-width: 50%;
+  padding-left: 25%;
+ }
+
+ h1 {
+  text-align: center;
+  text-shadow: 1px 1px orange;
+ }
+
+ #ghost-photo {
+  margin: auto;
+  position: relative;
+ }
+
+ button {
+  font-size: 200%;
+  margin: 2px;
+ }
