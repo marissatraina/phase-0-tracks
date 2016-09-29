@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DBC Campus locations</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <h1>DBC Campus Locations</h1>
+  <p><a href = "/">Home</a></p>
+  <p><a href="campus/new">Add Campus</a></p>
+  <ul>
+      <% @campus.each do |location| %>
+        <li><%= location['name'] %>
+        </li>
+        <% end %>
+  </ul> 
+</body>
+</html>
