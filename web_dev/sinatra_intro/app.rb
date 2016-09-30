@@ -26,14 +26,20 @@ end
 # write a GET route that retrieves
 # all student data
 get '/students' do
-  students = db.execute("SELECT * FROM students")
-  response = ""
-  students.each do |student|
-    response << "ID: #{student['id']}<br>"
-    response << "Name: #{student['name']}<br>"
-    response << "Age: #{student['age']}<br>"
-    response << "Campus: #{student['campus']}<br><br>"
+  campus = params[:campus]
+
+  if campus
+    students = db.execute("SELECT * FROM students WHERE campus=?", [campus])
+  else
+    students = db.execute("SELECT * FROM students")
   end
+    response = ""
+    students.each do |student|
+      response << "ID: #{student['id']}<br>"
+      response << "Name: #{student['name']}<br>"
+      response << "Age: #{student['age']}<br>"
+      response << "Campus: #{student['campus']}<br><br>"
+    end
   response
 end
 
@@ -62,6 +68,12 @@ get '/great_job' do
   end
 end
 
-get '/num_1/plus/num_2' do
-
+get '/:num1/plus/:num2' do
+ num1 = params[:num1]
+ num2 = params[:num2]
+ total = num1.to_i + num2.to_i
+ total = total.to_s
+ "#{num1} + #{num2} = #{total}"
 end
+
+  
