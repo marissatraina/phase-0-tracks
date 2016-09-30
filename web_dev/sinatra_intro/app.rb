@@ -54,6 +54,12 @@ get '/contact' do
 end
 
 get '/great_job' do 
+  name = params[:name]
+  if name
+    "Great job, #{name}!"
+  else
+    "Great job, you!"
+  end
 end
 
 get '/num_1/plus/num_2' do
